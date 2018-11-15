@@ -89,14 +89,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。</p>
-<p>##一:修改网站信息<br>想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了</p>
-<p>##二:网站css和js加载不出来<br>这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性后面需要的链接地址和实际的不符，常见的错误就是多了“你的用户名/”所以，可以试试将config_yml文件的root:那一行只留下root: /</p>
-<p>##三:加载图片的问题<br>我们在markdown文件中使用了本地图片，要把它加载到博客中就需要自己把图片放到source文件夹中，我的做法是在source中新建一个pictures文件夹,把图片放进去。同时<strong>markdown中图片应该这样写(../pictures/pic_name.jpg)</strong></p>
+<h2 id="一-修改网站信息"><a href="#一-修改网站信息" class="headerlink" title="一:修改网站信息"></a>一:修改网站信息</h2><p>想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了</p>
+<h2 id="二-网站css和js加载不出来"><a href="#二-网站css和js加载不出来" class="headerlink" title="二:网站css和js加载不出来"></a>二:网站css和js加载不出来</h2><p>这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性后面需要的链接地址和实际的不符，常见的错误就是多了“你的用户名/”所以，可以试试将config_yml文件的root:那一行只留下root: /</p>
+<h2 id="三-加载图片的问题"><a href="#三-加载图片的问题" class="headerlink" title="三:加载图片的问题"></a>三:加载图片的问题</h2><p>我们在markdown文件中使用了本地图片，要把它加载到博客中就需要自己把图片放到source文件夹中，我的做法是在source中新建一个pictures文件夹,把图片放进去。同时<strong>markdown中图片应该这样写(../pictures/pic_name.jpg)</strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjoiasr9e0002n0t524otl3fu" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjoijwi6c000034t51rxphfhj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -131,12 +131,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本来是想用wordpress搭建博客的,中途发现自己的vpn内存太少了，跑wordpress很吃力，于是就选择用hexo来搭建.花了一个晚上,看了各种搭建教程,总算是弄好了.<br>下面记录一下过程,让以后的也想用Hexo搭建博客的同学少踩点坑.</p>
-<p>###第一步,检查是否安装nodejs,npm<br>命令行输入node -v 以及npm -v,出现版本号说明已经安装,否则需要安装。安装可以查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官网的教程</a>,说的很详细,使用命令行即可安装这两个</p>
+<h3 id="第一步-检查是否安装nodejs-npm"><a href="#第一步-检查是否安装nodejs-npm" class="headerlink" title="第一步,检查是否安装nodejs,npm"></a>第一步,检查是否安装nodejs,npm</h3><p>命令行输入node -v 以及npm -v,出现版本号说明已经安装,否则需要安装。安装可以查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官网的教程</a>,说的很详细,使用命令行即可安装这两个</p>
 <p>###nodejs,npm安装后，安装hexo<br>确保npm,nodejs安装完成后,接着安装hexo使用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
 <p>接着,在一个你想放hexo文件的地方新建一个文件夹,打开命令行,进入这个文件目录,输入hexo init,初始化该文件夹.<br>接着，输入hexo g,等待大约几秒后，待命令执行完毕,再输入hexo s,打开浏览器，输入提示的网址,你就可以看到你的hexo博客啦</p>
 <p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号<img src="../pictures/wrongport.PNG" alt="wrong_port.png"></p>
-<p>###处理hexo的部分结束,接下来我们需要将hexo和github联系起来</p>
-<p>用到的正是ssh协议,同样的我们也需要准备工具,需要用到的是git,github(不用下载,浏览器即可)<br>git的下载安装教程看<a href="https://jingyan.baidu.com/article/4ae03de3c5ba323eff9e6b00.html" target="_blank" rel="noopener">这里</a><br>安装好的标准是在任意一个文件夹点击鼠标右键选择栏都有git Bash(here)，git Gui(here)</p>
+<h3 id="处理hexo的部分结束-接下来我们需要将hexo和github联系起来"><a href="#处理hexo的部分结束-接下来我们需要将hexo和github联系起来" class="headerlink" title="处理hexo的部分结束,接下来我们需要将hexo和github联系起来"></a>处理hexo的部分结束,接下来我们需要将hexo和github联系起来</h3><p>用到的正是ssh协议,同样的我们也需要准备工具,需要用到的是git,github(不用下载,浏览器即可)<br>git的下载安装教程看<a href="https://jingyan.baidu.com/article/4ae03de3c5ba323eff9e6b00.html" target="_blank" rel="noopener">这里</a><br>安装好的标准是在任意一个文件夹点击鼠标右键选择栏都有git Bash(here)，git Gui(here)</p>
 <p>接着我们就需要登录github，如果没有github账号就去注册一个,很简单.<br><strong>接着我们需要创建一个仓库，并将仓库名称命名为你的github账户的用户名</strong>.(建议把initial readme)选项勾上<br>创建完成后进入仓库，点击setting,下拉，找到gitpage,点击none按钮，选择master brunch<br>最后commit ,这样等几分钟就可以看到你的gitpage了</p>
 <p>接下来在git中设置ssh，建议大家看<a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">这篇博客</a>讲的非常仔细，<br>需要注意的是，当我们需要获得id_rsa.pub文件的内容，但找不到id_rsa.pub文件在哪时,可以打开我的电脑，右上方搜索处搜索id_rsa.pub就可以找到啦</p>
 <p>配置完成后，输入ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>，如果显示有你的github账号名字，则配置成功，接下来你就可以开始你的hexo之旅了</p>
@@ -144,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjoiasr9b0001n0t5rcnw4ii6" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjoijwi6v000334t5gd366jta" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -191,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjoiasr940000n0t5floedl4l" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjoijwi6q000134t57hv6qn5o" class="article-share-link">Share</a>
       
       
     </footer>

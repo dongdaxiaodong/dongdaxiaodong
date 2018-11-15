@@ -7,18 +7,18 @@
   
   <title>使用hexo的注意事项 | 瞻彼淇奥</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。 ##一:修改网站信息想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了 ##二:网站css和js加载不出来这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是s">
+  <meta name="description" content="hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。 一:修改网站信息想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了 二:网站css和js加载不出来这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性">
 <meta name="keywords" content="hexo的一些需要注意的地方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用hexo的注意事项">
 <meta property="og:url" content="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/index.html">
 <meta property="og:site_name" content="瞻彼淇奥">
-<meta property="og:description" content="hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。 ##一:修改网站信息想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了 ##二:网站css和js加载不出来这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是s">
+<meta property="og:description" content="hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。 一:修改网站信息想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了 二:网站css和js加载不出来这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-15T07:53:28.899Z">
+<meta property="og:updated_time" content="2018-11-15T12:07:17.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用hexo的注意事项">
-<meta name="twitter:description" content="hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。 ##一:修改网站信息想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了 ##二:网站css和js加载不出来这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是s">
+<meta name="twitter:description" content="hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。 一:修改网站信息想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了 二:网站css和js加载不出来这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性">
   
     <link rel="alternate" href="/atom.xml" title="瞻彼淇奥" type="application/atom+xml">
   
@@ -88,14 +88,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。</p>
-<p>##一:修改网站信息<br>想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了</p>
-<p>##二:网站css和js加载不出来<br>这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性后面需要的链接地址和实际的不符，常见的错误就是多了“你的用户名/”所以，可以试试将config_yml文件的root:那一行只留下root: /</p>
-<p>##三:加载图片的问题<br>我们在markdown文件中使用了本地图片，要把它加载到博客中就需要自己把图片放到source文件夹中，我的做法是在source中新建一个pictures文件夹,把图片放进去。同时<strong>markdown中图片应该这样写(../pictures/pic_name.jpg)</strong></p>
+<h2 id="一-修改网站信息"><a href="#一-修改网站信息" class="headerlink" title="一:修改网站信息"></a>一:修改网站信息</h2><p>想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了</p>
+<h2 id="二-网站css和js加载不出来"><a href="#二-网站css和js加载不出来" class="headerlink" title="二:网站css和js加载不出来"></a>二:网站css和js加载不出来</h2><p>这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性后面需要的链接地址和实际的不符，常见的错误就是多了“你的用户名/”所以，可以试试将config_yml文件的root:那一行只留下root: /</p>
+<h2 id="三-加载图片的问题"><a href="#三-加载图片的问题" class="headerlink" title="三:加载图片的问题"></a>三:加载图片的问题</h2><p>我们在markdown文件中使用了本地图片，要把它加载到博客中就需要自己把图片放到source文件夹中，我的做法是在source中新建一个pictures文件夹,把图片放进去。同时<strong>markdown中图片应该这样写(../pictures/pic_name.jpg)</strong></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjoiasr9e0002n0t524otl3fu" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjoijwi6c000034t51rxphfhj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
