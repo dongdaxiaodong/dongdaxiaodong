@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>mooc满分互评脚本 | 瞻彼淇奥</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="中国大学mooc的满分自动互评脚本学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。 话不多说，上代码123456789101112131415161718192021222324select_button=document.getElementsByClassName(&amp;quot;j-select&amp;quo">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mooc满分互评脚本">
+<meta property="og:url" content="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/index.html">
+<meta property="og:site_name" content="瞻彼淇奥">
+<meta property="og:description" content="中国大学mooc的满分自动互评脚本学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。 话不多说，上代码123456789101112131415161718192021222324select_button=document.getElementsByClassName(&amp;quot;j-select&amp;quo">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://colinzhang.cn/2018/11/17/pictures/mooc_huping_index.PNG">
+<meta property="og:image" content="http://colinzhang.cn/2018/11/17/pictures/mooc_console.PNG">
+<meta property="og:updated_time" content="2018-11-17T07:22:53.373Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mooc满分互评脚本">
+<meta name="twitter:description" content="中国大学mooc的满分自动互评脚本学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。 话不多说，上代码123456789101112131415161718192021222324select_button=document.getElementsByClassName(&amp;quot;j-select&amp;quo">
+<meta name="twitter:image" content="http://colinzhang.cn/2018/11/17/pictures/mooc_huping_index.PNG">
+  
+    <link rel="alternate" href="/atom.xml" title="瞻彼淇奥" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">瞻彼淇奥</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://colinzhang.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mooc满分互评脚本" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/17/mooc满分互评脚本/" class="article-date">
+  <time datetime="2018-11-17T06:52:03.000Z" itemprop="datePublished">2018-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mooc满分互评脚本
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="中国大学mooc的满分自动互评脚本"><a href="#中国大学mooc的满分自动互评脚本" class="headerlink" title="中国大学mooc的满分自动互评脚本"></a>中国大学mooc的满分自动互评脚本</h2><p>学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。</p>
+<p>话不多说，上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">select_button=document.getElementsByClassName(&quot;j-select&quot;)</span><br><span class="line">for(let i=0;i&lt;select_button.length;i+=1)&#123;</span><br><span class="line">  select_button[i].click()</span><br><span class="line">&#125;</span><br><span class="line">select_textarea=document.getElementsByClassName(&quot;j-textarea&quot;)</span><br><span class="line">for(let i=0;i&lt;select_textarea.length;i+=1)&#123;</span><br><span class="line">  select_textarea[i].value=&quot;好&quot;</span><br><span class="line">&#125;</span><br><span class="line">all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;all_a.length;i+=1)&#123;</span><br><span class="line">  if(all_a[i].innerText==&quot;提交&quot;)&#123;</span><br><span class="line">    all_a[i].click()</span><br><span class="line">    break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">new_all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;new_all_a.length;i+=1)&#123;</span><br><span class="line">  if(new_all_a[i].innerText.indexOf(&quot;继续评估&quot;)&gt;=0)&#123;</span><br><span class="line">      new_all_a[i].click()</span><br><span class="line">      break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure></p>
+<p>有了代码，接着，如何使用呢?</p>
+<ol>
+<li>首先我们需要登录自己的mooc账号，进入互评界面<img src="../pictures/mooc_huping_index.PNG" alt="互评按钮"></li>
+<li>点击前往互评，点击上方的开始互评</li>
+<li>接下来，我们就可以发挥代码的威力了，按下键盘的F12,这时会弹出开发者工具(如果没反应则自己上网查找你的浏览器的开发者工具在哪)，点击，控制台(console)，<img src="../pictures/mooc_console.PNG" alt="mooc_console">,我用的chrome.</li>
+<li>点击console板块下的输入框(要把代码复制到这里,在白色的方块里点一下就行了),之后把代码复制，粘贴进去。回车，搞定</li>
+<li>但这时仅仅互评了一次，我们需要互评多次，就需要再次Ctrl+V,回车，直到完成你需要互评的数量。大功告成,整个流程花费不到1分钟。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjol4lg380000t0t5coq982e8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/15/使用hexo的注意事项/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用hexo的注意事项</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/11/17/mooc满分互评脚本/">mooc满分互评脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/使用hexo的注意事项/">使用hexo的注意事项</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/15/记录搭建hexo博客的历程/">记录搭建hexo博客的历程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/14/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 colinZhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
