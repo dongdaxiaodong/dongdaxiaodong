@@ -66,6 +66,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" class="article-date">
+  <time datetime="2018-11-19T02:22:47.000Z" itemprop="datePublished">2018-11-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/">记录一下使用&#39;blade&#39;以及其配套orm库&#39;anima&#39;连接数据库的踩坑之旅</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="blade是国产的开源java-web框架-github地址。"><a href="#blade是国产的开源java-web框架-github地址。" class="headerlink" title="blade是国产的开源java web框架,github地址。"></a>blade是国产的开源java web框架,<a href="https://github.com/lets-blade/blade" target="_blank" rel="noopener">github地址</a>。</h3><p>blade非常轻量,内置服务器，而且没有使用j2ee那一套,blade吸收了很多web框架的优点，开发速度非常快。blade的’hello world’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import com.blade.Blade;</span><br><span class="line">public class Application&#123;</span><br><span class="line">	public static void main()&#123;</span><br><span class="line">		Blade.me().get(&quot;/&quot;,(req,res))-&gt;res.text(&quot;hello world&quot;)</span><br><span class="line">					.start(Application.class,args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>好了，优点说了这么多，但实际用起来也经历了不少坑，在博客里记录一下把.</p>
+<p>##目标：搭建一个blade项目，并连接好mysql数据库</p>
+<ol>
+<li>blade必须使用maven来创建项目,我用的idea，点击左上角File-&gt;new Project-&gt;选择maven-&gt;一直next就行了</li>
+<li>关于maven：maven就相当于是java的包管理器，类似于python的pip,nodejs的npm</li>
+<li>创建成功后，我们就可以导入项目所需的相关依赖了，核心的包括blade，mysql，anima等包,当时因为怕没有把全部依赖包导入进项目，我直接用了一个完整的blade项目的全部依赖,不怕多，就怕少。</li>
+<li>这里需要注意的是我们应该使用最新的blade版本，我目前使用的是<br><code>&lt;blade.version&gt;2.0.11.ALPHA&lt;/blade.version&gt;</code>这个版本,新版本启动项目用的是blade.of(),老版本用的是blade.me(),所以一定要用新版本</li>
+<li>项目创建成功后，我们就该创建完整的目录结构了。<img src="../pictures/blade_log.PNG" alt="我的目录结构">。</li>
+<li>目录结构分析一:com.bladejava是存放所有项目代码的包,在这个包下创建的Application.java文件就是启动文件。在com.bladejava下创建config,controller,model这几个包，config是用于配置的包，里面的Java文件用于项目配置(例如数据库的配置),我只有一个StartUpConfig.java是启动项目时需要运行的文件，通常还应该有处理异常的文件。controller存放路由文件,相当于flask中的蓝图。model存放模型。</li>
+<li>目录结构分析二:和java文件夹同级有个resource,里面是存放静态资源。同样的新建两个目录,static,templates。static放静态资源(js,css)，templates放html模板。</li>
+<li>目录结构分析三:resources下新建一个文件application.properties,这个就是配置文件了，里面存放各种配置信息，如mysql的配置，端口的配置等</li>
+</ol>
+<p>项目目录搭建完成后，我们可以试一试了，再controller中新建一个indexController.java <img src="../pictures/index_con.PNG" alt="indexController"> @Path是blade定义的一个注解，标明这是一个路由路径,@Path后面可以带参数。@GetRoute定义了一个路由。</p>
+<p>anima的使用,anima是blade作者开发的一个orm库，和blade搭配起来事半功倍.定义一个anima的model，非常简单，仅仅需要将类继承自Anima下的model类。同样的model类也可以有注解@Table(name=”数据库中表名”,pk=”主键名”),定义好类后，在路由函数中我们就可以任意使用了，更多amima信息见<a href="https://github.com/biezhi/anima/wiki/%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener">anima_wiki</a></p>
+<p>接下来就可以连接数据库了<br>在StartUpConfig中写入以下代码<img src="../pictures/blade_mysql.PNG" alt="startupconfig"></p>
+<p>这样项目构建完成，并且数据库也连接成功了,<a href="https://github.com/dongdaxiaodong/blade_demo" target="_blank" rel="noopener">我的项目地址</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjonqwrns00005gt53p08ic4p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-mooc满分互评脚本" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/17/mooc满分互评脚本/" class="article-date">
@@ -102,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjol4lg380000t0t5coq982e8" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjonqwrow00015gt531ty20b2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -144,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjol4lg5u0007t0t5ivjr6doz" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjonqwrp300045gt5p9elykle" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -191,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjol4lg440003t0t5b7g4kz73" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjonqwrp100035gt5k57xn8ot" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -238,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjol4lg470004t0t5aqmh2lld" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjonqwrpy000c5gt59uzb80eb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -261,7 +316,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
     </div>
   </div>
 
@@ -271,7 +326,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a>
+      <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/web框架blade/" style="font-size: 10px;">web框架blade</a>
     </div>
   </div>
 
@@ -291,6 +346,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/">记录一下使用&#39;blade&#39;以及其配套orm库&#39;anima&#39;连接数据库的踩坑之旅</a>
+          </li>
         
           <li>
             <a href="/2018/11/17/mooc满分互评脚本/">mooc满分互评脚本</a>
