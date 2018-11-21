@@ -88,8 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java model,然后进行接下俩的参数。</p>
-<p>###但，我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息,而blade处理Json数据的api只有一个request.bodyToString(),返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java HashMap的接口，下面上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static HashMap&lt;String,String&gt; json_maps(String body_str)&#123;</span><br><span class="line">        HashMap&lt;String,String&gt; maps=new HashMap&lt;&gt;();</span><br><span class="line">        String[] body_strings=body_str.split(&quot;,&quot;);</span><br><span class="line">        String pattern=&quot;\&quot;(.+)\&quot;&quot;;</span><br><span class="line">        Pattern P=Pattern.compile(pattern);</span><br><span class="line">        for(int i=0;i&lt;body_strings.length;i+=1)&#123;</span><br><span class="line">            String[] in_str=body_strings[i].split(&quot;:&quot;);</span><br><span class="line">            Matcher matcher_key=P.matcher(in_str[0]);</span><br><span class="line">            String key=&quot;&quot;;</span><br><span class="line">            String value=&quot;&quot;;</span><br><span class="line">            while (matcher_key.find())&#123;</span><br><span class="line">                key=matcher_key.group(0).substring(1,matcher_key.group(0).length()-1);</span><br><span class="line">            &#125;</span><br><span class="line">            Matcher matcher_value=P.matcher(in_str[1]);</span><br><span class="line">            while (matcher_value.find())&#123;</span><br><span class="line">                value=matcher_value.group(0).substring(1,matcher_value.group(0).length()-1);</span><br><span class="line">            &#125;</span><br><span class="line">            maps.put(key,value);</span><br><span class="line">        &#125;</span><br><span class="line">    return maps;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java-model-然后进行接下俩的参数。"><a href="#blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java-model-然后进行接下俩的参数。" class="headerlink" title="blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java model,然后进行接下俩的参数。"></a>blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java model,然后进行接下俩的参数。</h3><h3 id="但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息-而blade处理Json数据的api只有一个request-bodyToString-返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java-HashMap的接口，下面上代码"><a href="#但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息-而blade处理Json数据的api只有一个request-bodyToString-返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java-HashMap的接口，下面上代码" class="headerlink" title="但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息,而blade处理Json数据的api只有一个request.bodyToString(),返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java HashMap的接口，下面上代码"></a>但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息,而blade处理Json数据的api只有一个request.bodyToString(),返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java HashMap的接口，下面上代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static HashMap&lt;String,String&gt; json_maps(String body_str)&#123;</span><br><span class="line">        HashMap&lt;String,String&gt; maps=new HashMap&lt;&gt;();</span><br><span class="line">        String[] body_strings=body_str.split(&quot;,&quot;);</span><br><span class="line">        String pattern=&quot;\&quot;(.+)\&quot;&quot;;</span><br><span class="line">        Pattern P=Pattern.compile(pattern);</span><br><span class="line">        for(int i=0;i&lt;body_strings.length;i+=1)&#123;</span><br><span class="line">            String[] in_str=body_strings[i].split(&quot;:&quot;);</span><br><span class="line">            Matcher matcher_key=P.matcher(in_str[0]);</span><br><span class="line">            String key=&quot;&quot;;</span><br><span class="line">            String value=&quot;&quot;;</span><br><span class="line">            while (matcher_key.find())&#123;</span><br><span class="line">                key=matcher_key.group(0).substring(1,matcher_key.group(0).length()-1);</span><br><span class="line">            &#125;</span><br><span class="line">            Matcher matcher_value=P.matcher(in_str[1]);</span><br><span class="line">            while (matcher_value.find())&#123;</span><br><span class="line">                value=matcher_value.group(0).substring(1,matcher_value.group(0).length()-1);</span><br><span class="line">            &#125;</span><br><span class="line">            maps.put(key,value);</span><br><span class="line">        &#125;</span><br><span class="line">    return maps;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>简单说明一下，</p>
 <p>传入的参数是字符串，传出的参数是hashMap&lt;String,String&gt;。<br>所以之后建模的时候需要适当的Interger.ParseInt()等操作<br>代码核心使用正则表达式</p>
 <p>正则表达式模式:”(.+)”<br>然后分开遍历key和value数组，之后，这里需要注意的是获取到的group(0)需要再substring(0,length-1),这样才获取得到value和key值</p>
@@ -100,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjord808v00000ct5rhyevwfb" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjordgf6b0000bgt5wy28310f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -155,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjord809700040ct5tnyegjll" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjordgf6w0008bgt5t2y28snr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -203,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjord809900050ct5y9lxwrjg" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjordgf6p0003bgt5b3rilohs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -245,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjord809500030ct57sgeby9a" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjordgf6r0004bgt5kh15okyx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -292,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjord809d00080ct5swx0k63m" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjordgf6t0005bgt5dagyefr3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -339,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjord809100010ct52rfdornf" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjordgf6j0001bgt5w4xb91qn" class="article-share-link">Share</a>
       
       
     </footer>
