@@ -66,6 +66,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-使用python代码登录学校校园网" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/24/使用python代码登录学校校园网/" class="article-date">
+  <time datetime="2018-11-24T15:41:57.000Z" itemprop="datePublished">2018-11-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/24/使用python代码登录学校校园网/">使用python代码登录学校校园网</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="使用一行命令连接neu校园网"><a href="#使用一行命令连接neu校园网" class="headerlink" title="使用一行命令连接neu校园网"></a>使用一行命令连接neu校园网</h2><p>###学校的校园网非常好用，但每次都需要在浏览器登录的这个操作非常不符合自己的geek(zhuang b)的特点。于是写了个python脚本,在命令行中输入py neu.py就可以连上校园网</p>
+<p>下面直接上代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">data=&#123; &quot;username&quot;:&quot;20175055&quot;,&quot;password&quot;:&quot;1111111111&quot;,&quot;action&quot;:&quot;login&quot;&#125;</span><br><span class="line">headers=&#123;</span><br><span class="line">    &quot;Accept&quot;:&quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8&quot;,</span><br><span class="line">    &quot;Accept-Encoding&quot;:&quot;gzip, deflate&quot;,</span><br><span class="line">    &quot;Accept-Language&quot;:&quot;zh-CN,zh;q=0.9&quot;,</span><br><span class="line">    &quot;Cache-Control&quot;:&quot;no-cache&quot;,</span><br><span class="line">    &quot;Connection&quot;:&quot;keep-alive&quot;,</span><br><span class="line">    &quot;Content-Length&quot;:&quot;101&quot;,</span><br><span class="line">    &quot;Content-Type&quot;:&quot;application/x-www-form-urlencoded&quot;,</span><br><span class="line">    &quot;Host&quot;:&quot;ipgw.neu.edu.cn&quot;,</span><br><span class="line">    &quot;Origin&quot;:&quot;http://ipgw.neu.edu.cn&quot;,</span><br><span class="line">    &quot;Pragma&quot;:&quot;no-cache&quot;,</span><br><span class="line">    &quot;Referer&quot;:&quot;http://ipgw.neu.edu.cn/srun_portal_pc.php?ac_id=3&amp;url=http://www.msftconnecttest.com/redirect&quot;,</span><br><span class="line">    &quot;Upgrade-Insecure-Requests&quot;:&quot;1&quot;,</span><br><span class="line">    &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/&quot;+</span><br><span class="line">                 &quot;70.0.3538.102 Safari/537.36&quot;</span><br><span class="line">&#125;</span><br><span class="line">r=requests.post(&quot;http://ipgw.neu.edu.cn/srun_portal_pc.php?ac_id=3&amp;url=http://www.msftconnecttest.com/redirect&quot;,</span><br><span class="line">                data=data,headers=headers)</span><br></pre></td></tr></table></figure>
+<p>请求库用的是requests,这个库非常好用，发送请求就一行代码，比如获取百度首页,只需要<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">r=requests.get(&quot;www.baidu.com&quot;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure></p>
+<p>就会打印出百度首页的标签文本</p>
+<p>好了回到代码当中，既然要模拟登录，就需要先找到请求头中的url,fromData等信息，通过chrome开发者工具，network,点击下方的Preserve log，这次刷新页面，就可以获得页面的网络加载情况(requests response)，根据其中的formData等信息，完善我们data字典，data字典中包括username和password，这里输入的是我们的用户名(学号），和密码.</p>
+<p>第一次发送请求的时候，并没有设置请求头，于是返回的页面显示登录失败，之后自己使用浏览器连接了一次，获取了连接成功的请求头，然后构造header字典，最后作为请求参数，完成。</p>
+<p>说完了代码，如何在命令行中使用?</p>
+<p>我们把代码放入一个neu.py文件中然后保存，打开命令行，切换到neu.py所在的目录下，输入命令python neu.py,<img src="pictures/neu_success.PNG" alt="命令路径"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjovnr4ix0001j4t51xvrxbdz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-blade获取请求参数" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/21/blade获取请求参数/" class="article-date">
@@ -99,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjordgf6b0000bgt5wy28310f" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjovnr4f00000j4t5psq2bj5q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -154,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjordgf6w0008bgt5t2y28snr" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjovnr4jd0004j4t5124w3bvu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -202,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjordgf6p0003bgt5b3rilohs" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjovnr4jq000aj4t53hawf6k8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -244,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjordgf6r0004bgt5kh15okyx" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjovnr4jg0005j4t5ao50mgqb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -291,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjordgf6t0005bgt5dagyefr3" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjovnr4jn0008j4t53q6cdkhu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -338,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjordgf6j0001bgt5w4xb91qn" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjovnr4j80003j4t5gz7cgwaw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -361,7 +408,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
     </div>
   </div>
 
@@ -371,7 +418,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/web框架blade/" style="font-size: 20px;">web框架blade</a>
+      <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/web框架blade/" style="font-size: 20px;">web框架blade</a>
     </div>
   </div>
 
@@ -393,6 +440,10 @@
       <ul>
         
           <li>
+            <a href="/2018/11/24/使用python代码登录学校校园网/">使用python代码登录学校校园网</a>
+          </li>
+        
+          <li>
             <a href="/2018/11/21/blade获取请求参数/">blade获取请求参数</a>
           </li>
         
@@ -406,10 +457,6 @@
         
           <li>
             <a href="/2018/11/15/使用hexo的注意事项/">使用hexo的注意事项</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/15/记录搭建hexo博客的历程/">记录搭建hexo博客的历程</a>
           </li>
         
       </ul>
