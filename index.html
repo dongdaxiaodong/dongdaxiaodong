@@ -89,19 +89,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="谈谈小程序中的数据绑定"><a href="#谈谈小程序中的数据绑定" class="headerlink" title="谈谈小程序中的数据绑定"></a>谈谈小程序中的数据绑定</h2><p><strong>今天帮学长开发了他的小程序中的一个校园网一键登录的功能,很少写小程序代码，踩了不少坑，记录下来</strong></p>
-<p>首先需注意<strong>小程序中的数据不是双向绑定的</strong>,之前听别人说，小程序的写法和vue很像，于是就因为小程序和vue一样，实现了数据的双向绑定，然而 ，今天一用就发现不对了，下面用一个例子讲解一下如何实现双向绑定</p>
+<p>首先需注意<strong>小程序中的数据不是双向绑定的</strong>,之前听别人说，小程序的写法和vue很像，于是就以为小程序和vue一样，实现了数据的双向绑定，然而 ，今天一用就发现不对了，下面用一个例子讲解一下如何实现双向绑定</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;form class=&quot;login-form&quot;&gt;</span><br><span class="line">          &lt;view class=&quot;input-group &#123;&#123;userid_focus ? &apos;active&apos; : &apos;&apos;&#125;&#125;&quot;&gt;</span><br><span class="line">            &lt;text class=&quot;input-label&quot;&gt;学号&lt;/text&gt;</span><br><span class="line">            &lt;input type=&quot;number&quot; cursor-spacing=&quot;30&quot; id=&quot;usernameid&quot; bindinput=&quot;useridInput&quot; bindfocus=&quot;inputFocus&quot; bindblur=&quot;inputBlur&quot; value=&apos;&#123;&#123;username&#125;&#125;&apos;/&gt;</span><br><span class="line">          &lt;/view&gt;</span><br><span class="line">          &lt;view class=&quot;input-group &#123;&#123;passwd_focus ? &apos;active&apos; : &apos;&apos;&#125;&#125;&quot;&gt;</span><br><span class="line">            &lt;text class=&quot;input-label&quot;&gt;密码&lt;/text&gt;</span><br><span class="line">            &lt;input password=&quot;true&quot; cursor-spacing=&quot;30&quot; id=&quot;passwordid&quot;bindinput=&quot;passwdInput&quot; bindfocus=&quot;inputFocus&quot; bindblur=&quot;inputBlur&quot; value=&apos;&#123;&#123;password&#125;&#125;&apos; /&gt;</span><br><span class="line">          &lt;/view&gt;      </span><br><span class="line">        &lt;/form&gt;</span><br></pre></td></tr></table></figure>
 <p>上面是一个简单的登录表单，我们想要实现的是当输入学号和密码时，js中数据对象的username,password的值也相应变化</p>
 <p>下面放js代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">useridInput: function (e) &#123;</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     username: e.detail.value</span><br><span class="line">   &#125;)</span><br><span class="line">   console.log(this.data.username)</span><br><span class="line"> &#125;,</span><br><span class="line"> passwdInput: function (e) &#123;</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     password: e.detail.value</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <p>我们从表单中可以看到，学号标签设置了value=’username’,密码标签设置了value=”password”,做到这一点，data对象的username的值改变学号标签的value也会改变，这样实现了单向绑定，要实现双向绑定，为input标签设置<code>bindInput=&quot;userInput&quot;</code>,在userInput()中使用<code>e.detail.value</code>可以获得当前的input.value 于是用户输入都会改变username的值，每一次js代码设置username都会改变input.value。于是实现了双向绑定</p>
-<p>###用到的函数和属性<br>input–&gt; value=’‘ bindinput=”usernameInput”</p>
+<h3 id="用到的函数和属性"><a href="#用到的函数和属性" class="headerlink" title="用到的函数和属性"></a>用到的函数和属性</h3><p>input–&gt; value=’‘ bindinput=”usernameInput”</p>
 <p>小程序中的坑有很多，还需要慢慢填呀</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjoyjwkfs0001w4t5ojo2cttg" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjoyk0hiy0006tst5hynqzaoe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
@@ -147,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjoyjwkg40003w4t56hytr753" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjoyk0hix0005tst5xv3qfkht" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -192,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjoyjwkh10009w4t5yiwz7zhv" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjoyk0hil0001tst5wzl0jqtl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -246,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjoyjwkh9000dw4t5f7skn8mq" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjoyk0hj20009tst59gd9dwxv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -294,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjoyjwkfg0000w4t5idfn3fjb" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjoyk0hio0002tst519hj0iy8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -336,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjoyjwkh4000aw4t5xm1b2vnr" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjoyk0hiv0004tst5lq738xrw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -383,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjoyjwkhd000ew4t5l6gzel01" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjoyk0hj4000atst5edckoi9o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -430,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjoyjwkh6000cw4t5p445eime" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjoyk0hic0000tst57loby8t3" class="article-share-link">Share</a>
       
       
     </footer>
