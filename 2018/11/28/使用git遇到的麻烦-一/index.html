@@ -5,20 +5,22 @@
   
 
   
-  <title>Hello World | 瞻彼淇奥</title>
+  <title>使用git遇到的麻烦1 | 瞻彼淇奥</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="code">
+  <meta name="description" content="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。基本知识 git pull用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。 git push用于提交代码到远端 问题:遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://colinzhang.cn/2018/11/14/hello-world/index.html">
+<meta property="og:title" content="使用git遇到的麻烦1">
+<meta property="og:url" content="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/index.html">
 <meta property="og:site_name" content="瞻彼淇奥">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。基本知识 git pull用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。 git push用于提交代码到远端 问题:遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-14T11:09:53.582Z">
+<meta property="og:image" content="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/pictures/git_1.PNG">
+<meta property="og:updated_time" content="2018-11-28T08:37:58.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="使用git遇到的麻烦1">
+<meta name="twitter:description" content="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。基本知识 git pull用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。 git push用于提交代码到远端 问题:遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改">
+<meta name="twitter:image" content="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/pictures/git_1.PNG">
   
     <link rel="alternate" href="/atom.xml" title="瞻彼淇奥" type="application/atom+xml">
   
@@ -65,10 +67,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-使用git遇到的麻烦-一" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/14/hello-world/" class="article-date">
-  <time datetime="2018-11-14T11:09:53.574Z" itemprop="datePublished">2018-11-14</time>
+    <a href="/2018/11/28/使用git遇到的麻烦-一/" class="article-date">
+  <time datetime="2018-11-28T08:15:08.000Z" itemprop="datePublished">2018-11-28</time>
 </a>
     
   </div>
@@ -79,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      使用git遇到的麻烦1
     </h1>
   
 
@@ -87,37 +89,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。"><a href="#参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。" class="headerlink" title="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。"></a>参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。</h3><p>基本知识</p>
+<p><code>git pull</code>用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。</p>
+<p><code>git push</code>用于提交代码到远端</p>
+<p>问题:<img src="pictures/git_1.PNG" alt="push失败"><br>遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改到新文件夹中，然后add-&gt;commit-&gt;push,这样就可以成功Push.我之前遇到这个问题时，直接再pull项目一边然后就…..<strong>整个项目直接冲突，到处都===&lt;&lt;&lt;这些符号</strong>,所以最好的办法就是clone-&gt;commit-&gt;push</p>
+<h2 id="总结-近期用到的git指令"><a href="#总结-近期用到的git指令" class="headerlink" title="总结:近期用到的git指令"></a>总结:近期用到的git指令</h2><ol>
+<li>git pull origin master–获取项目分支(master)</li>
+<li>git push origin master–将本地代码推到项目分支中</li>
+<li>git log –查看记录</li>
+<li>git reset –head&lt;版本号&gt;—救命！</li>
+<li>git branch –查看分支</li>
+<li>git status –查看状态</li>
+<li>git remote –查看远程库</li>
+<li>git remote add origin &lt;ssh/http&gt;–添加远程仓库</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjp0x4ga40004bct5rfd70os8" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjp0x4g9d0000bct5sa9r55yj" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2018/11/15/记录搭建hexo博客的历程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          记录搭建hexo博客的历程
-        
-      </div>
-    </a>
   
+    <a href="/2018/11/27/微信小程序中的数据绑定/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">微信小程序中的数据绑定</div>
+    </a>
   
 </nav>
 
