@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="瞻彼淇奥">
 <meta property="og:description" content="中国大学mooc的满分自动互评脚本学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。 话不多说，上代码123456789101112131415161718192021222324select_button=document.getElementsByClassName(&amp;quot;j-select&amp;quo">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://colinzhang.cn/2018/11/17/pictures/mooc_huping_index.PNG">
+<meta property="og:image" content="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/pictures/mooc_huping_index.PNG">
 <meta property="og:image" content="https://colinzhang.cn/pictures/mooc_console.PNG">
-<meta property="og:updated_time" content="2018-12-02T16:10:36.472Z">
+<meta property="og:updated_time" content="2018-12-02T16:14:33.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mooc满分互评脚本">
 <meta name="twitter:description" content="中国大学mooc的满分自动互评脚本学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。 话不多说，上代码123456789101112131415161718192021222324select_button=document.getElementsByClassName(&amp;quot;j-select&amp;quo">
-<meta name="twitter:image" content="http://colinzhang.cn/2018/11/17/pictures/mooc_huping_index.PNG">
+<meta name="twitter:image" content="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/pictures/mooc_huping_index.PNG">
 
 
 
@@ -307,7 +307,7 @@
 <p>话不多说，上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">select_button=document.getElementsByClassName(&quot;j-select&quot;)</span><br><span class="line">for(let i=0;i&lt;select_button.length;i+=1)&#123;</span><br><span class="line">  select_button[i].click()</span><br><span class="line">&#125;</span><br><span class="line">select_textarea=document.getElementsByClassName(&quot;j-textarea&quot;)</span><br><span class="line">for(let i=0;i&lt;select_textarea.length;i+=1)&#123;</span><br><span class="line">  select_textarea[i].value=&quot;好&quot;</span><br><span class="line">&#125;</span><br><span class="line">all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;all_a.length;i+=1)&#123;</span><br><span class="line">  if(all_a[i].innerText==&quot;提交&quot;)&#123;</span><br><span class="line">    all_a[i].click()</span><br><span class="line">    break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">new_all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;new_all_a.length;i+=1)&#123;</span><br><span class="line">  if(new_all_a[i].innerText.indexOf(&quot;继续评估&quot;)&gt;=0)&#123;</span><br><span class="line">      new_all_a[i].click()</span><br><span class="line">      break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure></p>
 <p>有了代码，接着，如何使用呢?</p>
 <ol>
-<li>首先我们需要登录自己的mooc账号，进入互评界面<img src="../pictures/mooc_huping_index.PNG" alt="互评按钮"></li>
+<li>首先我们需要登录自己的mooc账号，进入互评界面<img src="pictures/mooc_huping_index.PNG" alt="互评按钮"></li>
 <li>点击前往互评，点击上方的开始互评</li>
 <li>接下来，我们就可以发挥代码的威力了，按下键盘的F12,这时会弹出开发者工具(如果没反应则自己上网查找你的浏览器的开发者工具在哪)，点击，控制台(console)，<img src="https://colinzhang.cn/pictures/mooc_console.PNG" alt="mooc_console">,我用的chrome.</li>
 <li>点击console板块下的输入框(要把代码复制到这里,在白色的方块里点一下就行了),之后把代码复制，粘贴进去。回车，搞定</li>
