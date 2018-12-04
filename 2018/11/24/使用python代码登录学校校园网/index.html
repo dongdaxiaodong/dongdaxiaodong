@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="瞻彼淇奥">
 <meta property="og:description" content="使用一行命令连接neu校园网学校的校园网非常好用，但每次都需要在浏览器登录的这个操作非常不符合自己的geek(zhuang b)的特点。于是写了个python脚本,在命令行中输入py neu.py就可以连上校园网下面直接上代码 1234567891011121314151617181920import requestsdata=&amp;#123; &amp;quot;username&amp;quot;:&amp;quot;2">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/pictures/neu_success.PNG">
-<meta property="og:updated_time" content="2018-11-26T16:32:08.884Z">
+<meta property="og:image" content="https://colinzhang.cn/pictures/neu_success.PNG">
+<meta property="og:updated_time" content="2018-12-04T07:05:39.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用python代码登录学校校园网">
 <meta name="twitter:description" content="使用一行命令连接neu校园网学校的校园网非常好用，但每次都需要在浏览器登录的这个操作非常不符合自己的geek(zhuang b)的特点。于是写了个python脚本,在命令行中输入py neu.py就可以连上校园网下面直接上代码 1234567891011121314151617181920import requestsdata=&amp;#123; &amp;quot;username&amp;quot;:&amp;quot;2">
-<meta name="twitter:image" content="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/pictures/neu_success.PNG">
+<meta name="twitter:image" content="https://colinzhang.cn/pictures/neu_success.PNG">
 
 
 
@@ -309,7 +309,7 @@
 <p>好了回到代码当中，既然要模拟登录，就需要先找到请求头中的url,fromData等信息，通过chrome开发者工具，network,点击下方的Preserve log，这次刷新页面，就可以获得页面的网络加载情况(requests response)，根据其中的formData等信息，完善我们data字典，data字典中包括username和password，这里输入的是我们的用户名(学号），和密码.</p>
 <p>第一次发送请求的时候，并没有设置请求头，于是返回的页面显示登录失败，之后自己使用浏览器连接了一次，获取了连接成功的请求头，然后构造header字典，最后作为请求参数，完成。</p>
 <p>说完了代码，如何在命令行中使用?</p>
-<p>我们把代码放入一个neu.py文件中然后保存，打开命令行，切换到neu.py所在的目录下，输入命令python neu.py,<img src="pictures/neu_success.PNG" alt="命令路径"></p>
+<p>我们把代码放入一个neu.py文件中然后保存，打开命令行，切换到neu.py所在的目录下，输入命令python neu.py,<img src="https://colinzhang.cn/pictures/neu_success.PNG" alt="命令路径"></p>
 
       
     </div>
@@ -429,7 +429,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

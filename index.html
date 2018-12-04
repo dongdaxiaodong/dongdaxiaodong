@@ -233,6 +233,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://colinzhang.cn/2018/12/04/马原机考满分程序/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="colinZhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="瞻彼淇奥">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/04/马原机考满分程序/" itemprop="url">马原机考满分程序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T13:55:18+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="如何制作一个马克思主义原理’辅助’答题程序"><a href="#如何制作一个马克思主义原理’辅助’答题程序" class="headerlink" title="如何制作一个马克思主义原理’辅助’答题程序?"></a>如何制作一个马克思主义原理’辅助’答题程序?</h2><p>马原这门课学分挺高的，但上课的时候同学们的积极性不高，期末会有一个上机考试。于是，聪(zhuang)明(b)的我尝试做了一个答题程序，希望能在考试中排上用场。</p>
+<p>项目需求:实现一个程序(需打包为一个exe文件),双击后，开始运行，复制需要得到答案的题目，再按’w’，弹出答案弹框</p>
+<p>项目分析:</p>
+<ol>
+<li>语言-&gt;python</li>
+<li>需要用到的库-&gt;pynut(全局监测键盘事件),win32clipboard(获取剪切板信息),win32con-&gt;和win32Clipboard配合使用,win32api-&gt;实现windows弹窗</li>
+<li>数据源-&gt;包含近1000道马原题的txt文档</li>
+</ol>
+<p>项目实现流程:</p>
+<ol>
+<li>首先肯定需要先处理数据，即数据清洗</li>
+<li>清洗完成，将其装入数据库</li>
+<li>编写核心代码，完成辅助程序</li>
+<li>打包代码,项目完成</li>
+</ol>
+<h3 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h3><p>这个阶段遇到了不少问题</p>
+<p>首先，我们需要先将题与题之间分开，分析txt文件可以看出，每个题开头都是’数字+顿号(句号)’的形式。 于是，很自然就想到使用正则表达式进行分割，<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这一步弄好后，针对每一道题，我们都需要将题干和选项分开，经过观察，每道题固定是 &quot;题目.....+答案(ABCD之一)+A...+B...+C...+D...&quot;，于是我们通过分割ABCD这4个字母来切割每一道题```pattern=[ABCD]</span><br></pre></td></tr></table></figure></p>
+<p>思路基本上就是这样，期间还是踩了不少坑，比如有少量‘ABCD’的编码方式不对导致匹配不上，以及少量题没有答案导致分割失败……</p>
+<h3 id="数据储存"><a href="#数据储存" class="headerlink" title="数据储存"></a>数据储存</h3><p>数据清洗完成后就应该把数据储存到数据库了，毫无疑问选择sqlite3这款数据库。 创建两个表，一个表放questions ,一个表放 answers. 下面是表的结构<br><img src="https://colinzhang.cn/pictures/pynut_question.PNG" alt="question表"><br><img src="https://colinzhang.cn/pictures/pynut_answer.PNG" alt="answer表"><br>需要注意的是，我们使用程序的时候，使用题目进行搜索匹配，返回的必须是answer，而不是abcd.</p>
+<p>python中写sql需要注意以下问题</p>
+<ol>
+<li>我们常用%s,%d格式化字符串和数字，在sql中，我们使用它们来将变量替换进sql执行语句， 但当我们需要用到’模糊查询(like)’时，就有一个大坑了。因为sql语句like使用%去匹配文本，正常道理，我们想匹配是否包含一个变量的值时，使用<figure class="highlight plain"><figcaption><span>id from question where title  like '%%s%'" %(question))```,但这样写会报错，正确的写法是```like '%%%s%%'```,在python中使用%时，得用%%才行！！！</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2. sql 中 and用于实现条件</span><br><span class="line"></span><br><span class="line">### 核心代码</span><br><span class="line"></span><br><span class="line">万事俱备，只欠东风。话不多说上代码</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>from pynput.keyboard import Listener<br>import logging<br>from win32 import win32clipboard as w<br>import win32con<br>import sqlite3<br>import win32api<br>logging.basicConfig(filename=(“keylogger.txt”),format=”%(asctime)s:%(message)s”,level=logging.DEBUG)</p>
+<p>def gettext():<br>    w.OpenClipboard()<br>    t = w.GetClipboardData(win32con.CF_TEXT)<br>    w.CloseClipboard()<br>    return t</p>
+<p>def press(key):<br>    logging.info(key)<br>    try:<br>        import_key=key.char<br>        if import_key in [‘w’,’W’]:<br>            question=gettext().decode(‘gb2312’)<br>            result=get_answer(question)<br>            win32api.MessageBox(0, result, “answer :”)<br>    except Exception as e:<br>        print(“no”)</p>
+<p>def get_answer(question):<br>    return_answer=””<br>    try:<br>        conn = sqlite3.connect(“mayuan.db”)<br>        cu = conn.cursor()<br>        print(question)<br>        result_title=cu.execute(“select id,answer_index from question where title  like ‘%%%%%s%%%%’” %(question)).fetchall()<br>        for answer in result_title:<br>            the_id=answer[0]<br>            the_index=answer[1]<br>            result_answer=cu.execute(“select content from answer where que_id=’%s’and answer_index=’%s’”%(the_id,the_index)).fetchall()<br>            return_answer+=result_answer[0][0]</p>
+<pre><code>    print(result_title)
+except Exception as e:
+    print(&quot;no in sql&quot;)
+    conn.rollback()
+finally:
+    conn.close()
+return return_answer
+</code></pre><p>with Listener(on_press = press) as listener:<br>        listener.join()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">代码很短，主要就是3个函数。</span><br><span class="line"></span><br><span class="line">1. gettext()用于获取剪切版的内容，并将其返回</span><br><span class="line">2. get_answer(question)获取参数question然后在数据库中查找对应条目，找到正确的选项，再利用正确选项从answer表中获取答案</span><br><span class="line">3. press(key)，全局监测函数，如果用户按下&apos;w&apos;(&apos;W&apos;),则会触发gettext(),获取到answer后，调用```win32api.MessageBox(0, result, &quot;answer :&quot;)```显示弹窗</span><br><span class="line"></span><br><span class="line">### 打包代码</span><br><span class="line"></span><br><span class="line">打包工具选择的是pyinstaller,切换到程序所在目录后执行命令```pyinstaller -F fileName.py --unconsole</span><br></pre></td></tr></table></figure></p>
+<p>最后的–unconsole用于启动exe文件后，不显示程序界面(这样老师就更不容易发现了)</p>
+<p>最后放一张运行的照片<br><img src="https://colinzhang.cn/pictures/pynut_success.PNG" alt="success"></p>
+<p>项目地址:<br><a href="https://github.com/dongdaxiaodong/mayuan" target="_blank" rel="noopener">github地址</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -307,7 +464,7 @@
             <h3 id="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。"><a href="#参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。" class="headerlink" title="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。"></a>参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。</h3><p>基本知识</p>
 <p><code>git pull</code>用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。</p>
 <p><code>git push</code>用于提交代码到远端</p>
-<p>问题:<img src="pictures/git_1.PNG" alt="push失败"><br>遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改到新文件夹中，然后add-&gt;commit-&gt;push,这样就可以成功Push.我之前遇到这个问题时，直接再pull项目一边然后就…..<strong>整个项目直接冲突，到处都===&lt;&lt;&lt;这些符号</strong>,所以最好的办法就是clone-&gt;commit-&gt;push</p>
+<p>问题:<img src="https://colinzhang.cn/pictures/git_1.PNG" alt="push失败"><br>遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改到新文件夹中，然后add-&gt;commit-&gt;push,这样就可以成功Push.我之前遇到这个问题时，直接再pull项目一边然后就…..<strong>整个项目直接冲突，到处都===&lt;&lt;&lt;这些符号</strong>,所以最好的办法就是clone-&gt;commit-&gt;push</p>
 <h2 id="总结-近期用到的git指令"><a href="#总结-近期用到的git指令" class="headerlink" title="总结:近期用到的git指令"></a>总结:近期用到的git指令</h2><ol>
 <li>git pull origin master–获取项目分支(master)</li>
 <li>git push origin master–将本地代码推到项目分支中</li>
@@ -572,7 +729,7 @@
 <p>好了回到代码当中，既然要模拟登录，就需要先找到请求头中的url,fromData等信息，通过chrome开发者工具，network,点击下方的Preserve log，这次刷新页面，就可以获得页面的网络加载情况(requests response)，根据其中的formData等信息，完善我们data字典，data字典中包括username和password，这里输入的是我们的用户名(学号），和密码.</p>
 <p>第一次发送请求的时候，并没有设置请求头，于是返回的页面显示登录失败，之后自己使用浏览器连接了一次，获取了连接成功的请求头，然后构造header字典，最后作为请求参数，完成。</p>
 <p>说完了代码，如何在命令行中使用?</p>
-<p>我们把代码放入一个neu.py文件中然后保存，打开命令行，切换到neu.py所在的目录下，输入命令python neu.py,<img src="pictures/neu_success.PNG" alt="命令路径"></p>
+<p>我们把代码放入一个neu.py文件中然后保存，打开命令行，切换到neu.py所在的目录下，输入命令python neu.py,<img src="https://colinzhang.cn/pictures/neu_success.PNG" alt="命令路径"></p>
 
           
         
@@ -957,7 +1114,7 @@
 <p>话不多说，上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">select_button=document.getElementsByClassName(&quot;j-select&quot;)</span><br><span class="line">for(let i=0;i&lt;select_button.length;i+=1)&#123;</span><br><span class="line">  select_button[i].click()</span><br><span class="line">&#125;</span><br><span class="line">select_textarea=document.getElementsByClassName(&quot;j-textarea&quot;)</span><br><span class="line">for(let i=0;i&lt;select_textarea.length;i+=1)&#123;</span><br><span class="line">  select_textarea[i].value=&quot;好&quot;</span><br><span class="line">&#125;</span><br><span class="line">all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;all_a.length;i+=1)&#123;</span><br><span class="line">  if(all_a[i].innerText==&quot;提交&quot;)&#123;</span><br><span class="line">    all_a[i].click()</span><br><span class="line">    break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">new_all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;new_all_a.length;i+=1)&#123;</span><br><span class="line">  if(new_all_a[i].innerText.indexOf(&quot;继续评估&quot;)&gt;=0)&#123;</span><br><span class="line">      new_all_a[i].click()</span><br><span class="line">      break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure></p>
 <p>有了代码，接着，如何使用呢?</p>
 <ol>
-<li>首先我们需要登录自己的mooc账号，进入互评界面<img src="pictures/mooc_huping_index.PNG" alt="互评按钮"></li>
+<li>首先我们需要登录自己的mooc账号，进入互评界面<img src="https://colinzhang.cn/pictures/mooc_huping_index.PNG" alt="互评按钮"></li>
 <li>点击前往互评，点击上方的开始互评</li>
 <li>接下来，我们就可以发挥代码的威力了，按下键盘的F12,这时会弹出开发者工具(如果没反应则自己上网查找你的浏览器的开发者工具在哪)，点击，控制台(console)，<img src="https://colinzhang.cn/pictures/mooc_console.PNG" alt="mooc_console">,我用的chrome.</li>
 <li>点击console板块下的输入框(要把代码复制到这里,在白色的方块里点一下就行了),之后把代码复制，粘贴进去。回车，搞定</li>
@@ -1209,7 +1366,7 @@
 <h3 id="第一步-检查是否安装nodejs-npm"><a href="#第一步-检查是否安装nodejs-npm" class="headerlink" title="第一步,检查是否安装nodejs,npm"></a>第一步,检查是否安装nodejs,npm</h3><p>命令行输入node -v 以及npm -v,出现版本号说明已经安装,否则需要安装。安装可以查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官网的教程</a>,说的很详细,使用命令行即可安装这两个</p>
 <p>###nodejs,npm安装后，安装hexo<br>确保npm,nodejs安装完成后,接着安装hexo使用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
 <p>接着,在一个你想放hexo文件的地方新建一个文件夹,打开命令行,进入这个文件目录,输入hexo init,初始化该文件夹.<br>接着，输入hexo g,等待大约几秒后，待命令执行完毕,再输入hexo s,打开浏览器，输入提示的网址,你就可以看到你的hexo博客啦</p>
-<p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号<img src="../pictures/wrongport.PNG" alt="wrong_port.png"></p>
+<p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号<img src="https://colinzhang.cn/pictures/wrongport.PNG" alt="wrong_port.png"></p>
 <h3 id="处理hexo的部分结束-接下来我们需要将hexo和github联系起来"><a href="#处理hexo的部分结束-接下来我们需要将hexo和github联系起来" class="headerlink" title="处理hexo的部分结束,接下来我们需要将hexo和github联系起来"></a>处理hexo的部分结束,接下来我们需要将hexo和github联系起来</h3><p>用到的正是ssh协议,同样的我们也需要准备工具,需要用到的是git,github(不用下载,浏览器即可)<br>git的下载安装教程看<a href="https://jingyan.baidu.com/article/4ae03de3c5ba323eff9e6b00.html" target="_blank" rel="noopener">这里</a><br>安装好的标准是在任意一个文件夹点击鼠标右键选择栏都有git Bash(here)，git Gui(here)</p>
 <p>接着我们就需要登录github，如果没有github账号就去注册一个,很简单.<br><strong>接着我们需要创建一个仓库，并将仓库名称命名为你的github账户的用户名</strong>.(建议把initial readme)选项勾上<br>创建完成后进入仓库，点击setting,下拉，找到gitpage,点击none按钮，选择master brunch<br>最后commit ,这样等几分钟就可以看到你的gitpage了</p>
 <p>接下来在git中设置ssh，建议大家看<a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">这篇博客</a>讲的非常仔细，<br>需要注意的是，当我们需要获得id_rsa.pub文件的内容，但找不到id_rsa.pub文件在哪时,可以打开我的电脑，右上方搜索处搜索id_rsa.pub就可以找到啦</p>
@@ -1423,7 +1580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
