@@ -5,22 +5,20 @@
   
 
   
-  <title>使用git遇到的麻烦1 | 瞻彼淇奥</title>
+  <title>blade应用部署之路 | 瞻彼淇奥</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。基本知识 git pull用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。 git push用于提交代码到远端 问题:遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改">
-<meta name="keywords" content="git">
+  <meta name="description" content="完成了一个工具类的web应用,要想使用就必须将其部署到我的服务器上面。今天踩了很多坑，但总算是完完整整疏通了一遍web应用的部署过程，如今总算可以说自己的”全栈工程师”了,hhh部署思路-&amp;gt;使用maven打包为jar包，然后将jar包发送到linux服务器，运行jar包  修改application.properties。 主要是加上server.address=&amp;#39;主机公网ip&amp;#3">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用git遇到的麻烦1">
-<meta property="og:url" content="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/index.html">
+<meta property="og:title" content="blade应用部署之路">
+<meta property="og:url" content="http://colinzhang.cn/2018/12/10/blade应用部署之路/index.html">
 <meta property="og:site_name" content="瞻彼淇奥">
-<meta property="og:description" content="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。基本知识 git pull用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。 git push用于提交代码到远端 问题:遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改">
+<meta property="og:description" content="完成了一个工具类的web应用,要想使用就必须将其部署到我的服务器上面。今天踩了很多坑，但总算是完完整整疏通了一遍web应用的部署过程，如今总算可以说自己的”全栈工程师”了,hhh部署思路-&amp;gt;使用maven打包为jar包，然后将jar包发送到linux服务器，运行jar包  修改application.properties。 主要是加上server.address=&amp;#39;主机公网ip&amp;#3">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://colinzhang.cn/pictures/git_1.PNG">
-<meta property="og:updated_time" content="2018-12-04T07:04:54.941Z">
+<meta property="og:updated_time" content="2018-12-10T15:19:14.617Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用git遇到的麻烦1">
-<meta name="twitter:description" content="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。基本知识 git pull用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。 git push用于提交代码到远端 问题:遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改">
-<meta name="twitter:image" content="https://colinzhang.cn/pictures/git_1.PNG">
+<meta name="twitter:title" content="blade应用部署之路">
+<meta name="twitter:description" content="完成了一个工具类的web应用,要想使用就必须将其部署到我的服务器上面。今天踩了很多坑，但总算是完完整整疏通了一遍web应用的部署过程，如今总算可以说自己的”全栈工程师”了,hhh部署思路-&amp;gt;使用maven打包为jar包，然后将jar包发送到linux服务器，运行jar包  修改application.properties。 主要是加上server.address=&amp;#39;主机公网ip&amp;#3">
   
     <link rel="alternate" href="/atom.xml" title="瞻彼淇奥" type="application/atom+xml">
   
@@ -67,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-使用git遇到的麻烦-一" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-blade应用部署之路" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/28/使用git遇到的麻烦-一/" class="article-date">
-  <time datetime="2018-11-28T08:15:08.000Z" itemprop="datePublished">2018-11-28</time>
+    <a href="/2018/12/10/blade应用部署之路/" class="article-date">
+  <time datetime="2018-12-10T13:51:47.000Z" itemprop="datePublished">2018-12-10</time>
 </a>
     
   </div>
@@ -81,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用git遇到的麻烦1
+      blade应用部署之路
     </h1>
   
 
@@ -89,28 +87,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。"><a href="#参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。" class="headerlink" title="参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。"></a>参加一个学长的微信小程序项目，第一次团队协作的我面对git有些无助，踩了很多坑，记录下来。</h3><p>基本知识</p>
-<p><code>git pull</code>用于在你今天的编码前，能够将现有的项目‘拉’下来，这样就获得了项目的最新代码。</p>
-<p><code>git push</code>用于提交代码到远端</p>
-<p>问题:<img src="https://colinzhang.cn/pictures/git_1.PNG" alt="push失败"><br>遇到这个问题一定不要直接用git push -f,这个指令能不用就千万别用。这时候最好的办法就是直接clone项目到一个新文件夹，然后把你这次修改添加删除的代码改到新文件夹中，然后add-&gt;commit-&gt;push,这样就可以成功Push.我之前遇到这个问题时，直接再pull项目一边然后就…..<strong>整个项目直接冲突，到处都===&lt;&lt;&lt;这些符号</strong>,所以最好的办法就是clone-&gt;commit-&gt;push</p>
-<h2 id="总结-近期用到的git指令"><a href="#总结-近期用到的git指令" class="headerlink" title="总结:近期用到的git指令"></a>总结:近期用到的git指令</h2><ol>
-<li>git pull origin master–获取项目分支(master)</li>
-<li>git push origin master–将本地代码推到项目分支中</li>
-<li>git log –查看记录</li>
-<li>git reset –head&lt;版本号&gt;—救命！</li>
-<li>git branch –查看分支</li>
-<li>git status –查看状态</li>
-<li>git remote –查看远程库</li>
-<li>git remote add origin &lt;ssh/http&gt;–添加远程仓库</li>
+        <h3 id="完成了一个工具类的web应用-要想使用就必须将其部署到我的服务器上面。今天踩了很多坑，但总算是完完整整疏通了一遍web应用的部署过程，如今总算可以说自己的”全栈工程师”了-hhh"><a href="#完成了一个工具类的web应用-要想使用就必须将其部署到我的服务器上面。今天踩了很多坑，但总算是完完整整疏通了一遍web应用的部署过程，如今总算可以说自己的”全栈工程师”了-hhh" class="headerlink" title="完成了一个工具类的web应用,要想使用就必须将其部署到我的服务器上面。今天踩了很多坑，但总算是完完整整疏通了一遍web应用的部署过程，如今总算可以说自己的”全栈工程师”了,hhh"></a>完成了一个工具类的web应用,要想使用就必须将其部署到我的服务器上面。今天踩了很多坑，但总算是完完整整疏通了一遍web应用的部署过程，如今总算可以说自己的”全栈工程师”了,hhh</h3><p>部署思路-&gt;使用maven打包为jar包，然后将jar包发送到linux服务器，运行jar包</p>
+<ol>
+<li>修改application.properties。 主要是加上<code>server.address=&#39;主机公网ip&#39;</code>，以及修改mysql数据库密码</li>
+<li>在pom.xml中添加”build”模块,需要注意的是一定要注意Application class的位置，比如我这次的项目中它是放到com.bladejava.Application中的</li>
+<li>切换到项目目录，运行<code>mvn clean package -DskipTests</code>jar包位于target文件夹中</li>
+<li>jar包也有了，这个时候就需要上传到服务器运行它。</li>
+<li>这个过程中也用到了很多的linux指令,<ol>
+<li>例如mkdir [文件名]-&gt;创建文件夹,</li>
+<li>cp [旧文件] [新文件地址]-&gt;将旧文件复制到新文件地址,</li>
+<li>unzip [文件名]-&gt;解压zip文件至当前地址.</li>
+<li>运行jar包，java -jar filename.jar.</li>
+<li>查看进程  ps a, 杀死进程 kill -9 [pid]</li>
+<li>不挂断运行程序 sudo nohup java -jar filename.jar &amp; (注意加上sudo提供权限，后面一定要加上&amp;)</li>
 </ol>
+</li>
+<li>需要注意的是maven打包项目的时候会自动使用本地环境变量中的jdk版本，所以如果项目jdk和本地jdk不一样的话就需要手动更改</li>
+</ol>
+<h2 id="思考与总结"><a href="#思考与总结" class="headerlink" title="思考与总结"></a>思考与总结</h2><p>部署项目时及时用git保存分支，这样就算项目打包失败也可以补救。</p>
+<p>vue真香!</p>
+<p>pwa王者归来!</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjpigqsi60007d4t5c6u6n2ni" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/10/blade应用部署之路/" data-id="cjpigqsb30000d4t5r8ombatu" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
     </footer>
   </div>
@@ -118,19 +122,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/12/04/马原机考满分程序/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          马原机考满分程序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/27/微信小程序中的数据绑定/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/12/04/马原机考满分程序/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">微信小程序中的数据绑定</div>
+      <div class="article-nav-title">马原机考满分程序</div>
     </a>
   
 </nav>
