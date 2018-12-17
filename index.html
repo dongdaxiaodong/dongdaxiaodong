@@ -66,6 +66,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-java自定义排序" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/17/java自定义排序/" class="article-date">
+  <time datetime="2018-12-17T15:42:04.000Z" itemprop="datePublished">2018-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/17/java自定义排序/">java自定义排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="引言-java的自定义排序平时用的不多，但一用起来又需要自己翻文档，很麻烦，这次在博客中记录下来，防止自己又忘了"><a href="#引言-java的自定义排序平时用的不多，但一用起来又需要自己翻文档，很麻烦，这次在博客中记录下来，防止自己又忘了" class="headerlink" title="引言:java的自定义排序平时用的不多，但一用起来又需要自己翻文档，很麻烦，这次在博客中记录下来，防止自己又忘了"></a>引言:java的自定义排序平时用的不多，但一用起来又需要自己翻文档，很麻烦，这次在博客中记录下来，防止自己又忘了</h4><p>实现自定义排序，需要需要排序的那个类继承Comparable接口,<br>然后重写compareTo方法,下面放代码<br><figure class="highlight plain"><figcaption><span>int compareTo(Object o)&#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student compare_stu=(Student)o;</span><br><span class="line">return compare_stu.stu_id&gt;this.stu_id&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码分析:首先，代码实现了给定一个继承自List接口的数据结构(如:ArrayList,LinkedList)，能够将其以stu_id这一属性从<strong>高到低</strong>排序,调用时只需要使用Collections.sort(not_sort_list)</p>
+<h3 id="实例–定义一个进程类-process-根据其属性used-time-double-从小到大排序"><a href="#实例–定义一个进程类-process-根据其属性used-time-double-从小到大排序" class="headerlink" title="实例–定义一个进程类(process),根据其属性used_time(double),从小到大排序"></a>实例–定义一个进程类(process),根据其属性used_time(double),从小到大排序</h3><p>process.java<br><figure class="highlight plain"><figcaption><span>class process implements Comparable&#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    private int used_time;</span><br><span class="line">    public process(int used_time)&#123;</span><br><span class="line">        this.used_time=used_time;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public int compareTo(Object o)&#123;</span><br><span class="line">        process compared_process=(process)o;</span><br><span class="line">        return this.used_time-compared_process.getUsed_time();</span><br><span class="line">    &#125;</span><br><span class="line">    public int getUsed_time() &#123;</span><br><span class="line">        return used_time;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>test.java<br><figure class="highlight plain"><figcaption><span>java.util.ArrayList;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Collections;</span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        ArrayList&lt;process&gt; unsorted_list=new ArrayList&lt;&gt;();</span><br><span class="line">        int process_numbers=5;</span><br><span class="line">        System.out.println(&quot;下面是没有排序的process的used_time&quot;);</span><br><span class="line">        for(int i=0;i&lt;process_numbers;i+=1)&#123;</span><br><span class="line">            unsorted_list.add(new process((int)(Math.random()*10)));</span><br><span class="line">        &#125;</span><br><span class="line">        for(process going_process:unsorted_list)&#123;</span><br><span class="line">            System.out.print(going_process.getUsed_time()+&quot;  &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;&quot;);</span><br><span class="line">        System.out.println(&quot;下面是经过排序的process的used_time&quot;);</span><br><span class="line">        Collections.sort(unsorted_list);</span><br><span class="line">        for(process going_process:unsorted_list)&#123;</span><br><span class="line">            System.out.print(going_process.getUsed_time()+&quot;  &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="最近的项目使用java进行开发，而没有用python，自我感觉java配合idea开发起来效率不比python低，而且静态语言天生就更容易检测出代码的错误-python还需要各种type-java也有很多好用的语法糖，还需要自己慢慢熟悉呀"><a href="#最近的项目使用java进行开发，而没有用python，自我感觉java配合idea开发起来效率不比python低，而且静态语言天生就更容易检测出代码的错误-python还需要各种type-java也有很多好用的语法糖，还需要自己慢慢熟悉呀" class="headerlink" title="最近的项目使用java进行开发，而没有用python，自我感觉java配合idea开发起来效率不比python低，而且静态语言天生就更容易检测出代码的错误.python还需要各种type(),java也有很多好用的语法糖，还需要自己慢慢熟悉呀"></a>最近的项目使用java进行开发，而没有用python，自我感觉java配合idea开发起来效率不比python低，而且静态语言天生就更容易检测出代码的错误.python还需要各种type(),java也有很多好用的语法糖，还需要自己慢慢熟悉呀</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2018/12/17/java自定义排序/" data-id="cjpsinnxn000034t5gnovgg9g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-blade应用部署之路" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/10/blade应用部署之路/" class="article-date">
@@ -112,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/10/blade应用部署之路/" data-id="cjpigqsb30000d4t5r8ombatu" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/10/blade应用部署之路/" data-id="cjpsinny9000134t552mdgds2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -185,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/04/马原机考满分程序/" data-id="cjpigqsil000dd4t5glseawj6" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/04/马原机考满分程序/" data-id="cjpsinnz2000c34t5gsfoae0d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -237,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjpigqsi60007d4t5c6u6n2ni" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjpsinnyo000534t5885o1ndn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -284,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjpigqsif0009d4t5ab2dpp8p" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjpsinnyx000934t5h5oa95k6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
@@ -330,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjpigqsi20005d4t59sciqnz6" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjpsinnyl000434t5ymwznvfv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -375,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjpigqshz0004d4t5beiafeyu" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjpsinnza000g34t5v84mlz2h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -429,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjpigqsio000fd4t5bp1ci7u3" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjpsinnze000i34t5vvdmryls" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -477,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjpigqsib0008d4t5y2jhgqu3" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjpsinnzi000k34t53y7ycpb5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -519,54 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjpigqsij000cd4t5qnsspp8v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-记录搭建hexo博客的历程" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/15/记录搭建hexo博客的历程/" class="article-date">
-  <time datetime="2018-11-15T02:50:19.000Z" itemprop="datePublished">2018-11-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/记录搭建hexo博客的历程/">记录搭建hexo博客的历程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本来是想用wordpress搭建博客的,中途发现自己的vpn内存太少了，跑wordpress很吃力，于是就选择用hexo来搭建.花了一个晚上,看了各种搭建教程,总算是弄好了.<br>下面记录一下过程,让以后的也想用Hexo搭建博客的同学少踩点坑.</p>
-<h3 id="第一步-检查是否安装nodejs-npm"><a href="#第一步-检查是否安装nodejs-npm" class="headerlink" title="第一步,检查是否安装nodejs,npm"></a>第一步,检查是否安装nodejs,npm</h3><p>命令行输入node -v 以及npm -v,出现版本号说明已经安装,否则需要安装。安装可以查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">hexo官网的教程</a>,说的很详细,使用命令行即可安装这两个</p>
-<p>###nodejs,npm安装后，安装hexo<br>确保npm,nodejs安装完成后,接着安装hexo使用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>接着,在一个你想放hexo文件的地方新建一个文件夹,打开命令行,进入这个文件目录,输入hexo init,初始化该文件夹.<br>接着，输入hexo g,等待大约几秒后，待命令执行完毕,再输入hexo s,打开浏览器，输入提示的网址,你就可以看到你的hexo博客啦</p>
-<p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号<img src="https://colinzhang.cn/pictures/wrongport.PNG" alt="wrong_port.png"></p>
-<h3 id="处理hexo的部分结束-接下来我们需要将hexo和github联系起来"><a href="#处理hexo的部分结束-接下来我们需要将hexo和github联系起来" class="headerlink" title="处理hexo的部分结束,接下来我们需要将hexo和github联系起来"></a>处理hexo的部分结束,接下来我们需要将hexo和github联系起来</h3><p>用到的正是ssh协议,同样的我们也需要准备工具,需要用到的是git,github(不用下载,浏览器即可)<br>git的下载安装教程看<a href="https://jingyan.baidu.com/article/4ae03de3c5ba323eff9e6b00.html" target="_blank" rel="noopener">这里</a><br>安装好的标准是在任意一个文件夹点击鼠标右键选择栏都有git Bash(here)，git Gui(here)</p>
-<p>接着我们就需要登录github，如果没有github账号就去注册一个,很简单.<br><strong>接着我们需要创建一个仓库，并将仓库名称命名为你的github账户的用户名</strong>.(建议把initial readme)选项勾上<br>创建完成后进入仓库，点击setting,下拉，找到gitpage,点击none按钮，选择master brunch<br>最后commit ,这样等几分钟就可以看到你的gitpage了</p>
-<p>接下来在git中设置ssh，建议大家看<a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">这篇博客</a>讲的非常仔细，<br>需要注意的是，当我们需要获得id_rsa.pub文件的内容，但找不到id_rsa.pub文件在哪时,可以打开我的电脑，右上方搜索处搜索id_rsa.pub就可以找到啦</p>
-<p>配置完成后，输入ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>，如果显示有你的github账号名字，则配置成功，接下来你就可以开始你的hexo之旅了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjpigqslf000hd4t5b5lpdvac" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjpsinnz4000d34t5itdek9ij" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -606,7 +601,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web框架blade/" style="font-size: 20px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web框架blade/" style="font-size: 20px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
     </div>
   </div>
 
@@ -628,6 +623,10 @@
       <ul>
         
           <li>
+            <a href="/2018/12/17/java自定义排序/">java自定义排序</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/10/blade应用部署之路/">blade应用部署之路</a>
           </li>
         
@@ -641,10 +640,6 @@
         
           <li>
             <a href="/2018/11/27/微信小程序中的数据绑定/">微信小程序中的数据绑定</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/24/使用python代码登录学校校园网/">使用python代码登录学校校园网</a>
           </li>
         
       </ul>
