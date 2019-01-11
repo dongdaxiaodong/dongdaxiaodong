@@ -66,6 +66,96 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-mooc满分互评脚本" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/17/mooc满分互评脚本/" class="article-date">
+  <time datetime="2018-11-17T06:52:03.000Z" itemprop="datePublished">2018-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/17/mooc满分互评脚本/">mooc满分互评脚本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="中国大学mooc的满分自动互评脚本"><a href="#中国大学mooc的满分自动互评脚本" class="headerlink" title="中国大学mooc的满分自动互评脚本"></a>中国大学mooc的满分自动互评脚本</h2><p>学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。</p>
+<p>话不多说，上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">select_button=document.getElementsByClassName(&quot;j-select&quot;)</span><br><span class="line">for(let i=0;i&lt;select_button.length;i+=1)&#123;</span><br><span class="line">  select_button[i].click()</span><br><span class="line">&#125;</span><br><span class="line">select_textarea=document.getElementsByClassName(&quot;j-textarea&quot;)</span><br><span class="line">for(let i=0;i&lt;select_textarea.length;i+=1)&#123;</span><br><span class="line">  select_textarea[i].value=&quot;好&quot;</span><br><span class="line">&#125;</span><br><span class="line">all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;all_a.length;i+=1)&#123;</span><br><span class="line">  if(all_a[i].innerText==&quot;提交&quot;)&#123;</span><br><span class="line">    all_a[i].click()</span><br><span class="line">    break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">new_all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;new_all_a.length;i+=1)&#123;</span><br><span class="line">  if(new_all_a[i].innerText.indexOf(&quot;继续评估&quot;)&gt;=0)&#123;</span><br><span class="line">      new_all_a[i].click()</span><br><span class="line">      break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure></p>
+<p>有了代码，接着，如何使用呢?</p>
+<ol>
+<li>首先我们需要登录自己的mooc账号，进入互评界面<img src="https://colinzhang.cn/pictures/mooc_huping_index.PNG" alt="互评按钮"></li>
+<li>点击前往互评，点击上方的开始互评</li>
+<li>接下来，我们就可以发挥代码的威力了，按下键盘的F12,这时会弹出开发者工具(如果没反应则自己上网查找你的浏览器的开发者工具在哪)，点击，控制台(console)，<img src="https://colinzhang.cn/pictures/mooc_console.PNG" alt="mooc_console">,我用的chrome.</li>
+<li>点击console板块下的输入框(要把代码复制到这里,在白色的方块里点一下就行了),之后把代码复制，粘贴进去。回车，搞定</li>
+<li>但这时仅仅互评了一次，我们需要互评多次，就需要再次Ctrl+V,回车，直到完成你需要互评的数量。大功告成,整个流程花费不到1分钟。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjqs1ymr3000a9gt5x7xys59u" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用hexo的注意事项" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/15/使用hexo的注意事项/" class="article-date">
+  <time datetime="2018-11-15T07:15:22.000Z" itemprop="datePublished">2018-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/15/使用hexo的注意事项/">使用hexo的注意事项</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。</p>
+<h2 id="一-修改网站信息"><a href="#一-修改网站信息" class="headerlink" title="一:修改网站信息"></a>一:修改网站信息</h2><p>想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了</p>
+<h2 id="二-网站css和js加载不出来"><a href="#二-网站css和js加载不出来" class="headerlink" title="二:网站css和js加载不出来"></a>二:网站css和js加载不出来</h2><p>这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性后面需要的链接地址和实际的不符，常见的错误就是多了“你的用户名/”所以，可以试试将config_yml文件的root:那一行只留下root: /</p>
+<h2 id="三-加载图片的问题"><a href="#三-加载图片的问题" class="headerlink" title="三:加载图片的问题"></a>三:加载图片的问题</h2><p>我们在markdown文件中使用了本地图片，要把它加载到博客中就需要自己把图片放到source文件夹中，我的做法是在source中新建一个pictures文件夹,把图片放进去。同时<strong>markdown中图片应该这样写(../pictures/pic_name.jpg)</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjqs1ymrf000k9gt5e0f8lwej" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-记录搭建hexo博客的历程" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/15/记录搭建hexo博客的历程/" class="article-date">
@@ -101,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjpsityqa000h1kt5z80ujh5p" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjqs1ymrj000m9gt59n4bij9r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -148,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjpsitypm00011kt5ipbibz5d" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjqs1ymqu00039gt50gki6r1m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -176,7 +266,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwa/">pwa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
     </div>
   </div>
 
@@ -186,7 +276,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web框架blade/" style="font-size: 20px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 15px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pwa/" style="font-size: 10px;">pwa</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/web框架blade/" style="font-size: 15px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
     </div>
   </div>
 
@@ -195,7 +285,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -208,6 +298,14 @@
       <ul>
         
           <li>
+            <a href="/2019/12/28/java lambda函数式编程/">java lambda函数式编程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/11/pwa介绍/">pwa介绍</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/17/java自定义排序/">java自定义排序</a>
           </li>
         
@@ -217,14 +315,6 @@
         
           <li>
             <a href="/2018/12/04/马原机考满分程序/">马原机考满分程序</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/28/使用git遇到的麻烦-一/">使用git遇到的麻烦1</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/27/微信小程序中的数据绑定/">微信小程序中的数据绑定</a>
           </li>
         
       </ul>
@@ -239,7 +329,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 colinZhang<br>
+      &copy; 2019 colinZhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

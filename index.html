@@ -66,6 +66,112 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-java lambda函数式编程" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/28/java lambda函数式编程/" class="article-date">
+  <time datetime="2019-12-28T10:33:39.000Z" itemprop="datePublished">2019-12-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/28/java lambda函数式编程/">java lambda函数式编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函数式编程一直都吸引着我-java8中引入了stream以及lambda表达式让我们能够用java写出流利的函数式代码-现在把主要的用法记录一下"><a href="#函数式编程一直都吸引着我-java8中引入了stream以及lambda表达式让我们能够用java写出流利的函数式代码-现在把主要的用法记录一下" class="headerlink" title="函数式编程一直都吸引着我,java8中引入了stream以及lambda表达式让我们能够用java写出流利的函数式代码,现在把主要的用法记录一下"></a>函数式编程一直都吸引着我,java8中引入了stream以及lambda表达式让我们能够用java写出流利的函数式代码,现在把主要的用法记录一下</h3><p>在java8中Collection这个接口中，新增了一个default方法stream(),使得Collection下的所有数据结构实现的实例都可以转化为’stream’流,<br>通过操作stream提供的接口我们可以完成相应的函数式编程.</p>
+<ol>
+<li>将一个ArrayList转化为stream, <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 将数组转化为stream,```Stream.of(myArray)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>接下来分析常用的api</p>
+<ol>
+<li>stream.map() 用于将<strong>流中的元素映射为该元素的属性</strong>，例如<code>nameList.stream().map(name-&gt;name.length)</code>中，将name映射为name的长度,映射结束后，流就变成各个name长度的流</li>
+<li>stream.filter() 用于将<strong>过滤流中的元素</strong>,例如<code>nameList.stream().filter(name-&gt;name.length&gt;=5)</code>,上述代码用于过滤流，使得剩下的流中的元素(name)的长度大于等于5</li>
+<li>stream.collect() 用于<strong>switch，使其转化为实际可用的数据结构</strong>,例如<code>.collect(Collectors.toList())</code>将流转化为List</li>
+<li>stream.sorted() 用于自定义流的顺序</li>
+<li>stream.distinct() 用于去除重复的流</li>
+<li>stream.findAny() 读名称就可以知道该方法用于查找指定的流，这里需要注意的是返回的是Optional的值，Optional也是java8中新出现的一种数据结构，可以防止空指针报错，使用<code>myOptional.isPresent()</code>返回true,则非空，使用myOptional.get()就可以获取到相应的值，返回false，则说明是空的</li>
+<li>stream.flatMap() 该方法和map()很像，但不同的是，flatMap()可以<em>分解</em>map后集合结构或者数组,这样说有点抽象，举个例子,定义一个family类，其中有一个属性为LinkedList<string> children_names,该属性是一个保存家庭中所有孩子姓名的LinkedList.现在，我们有一个包含很多家庭的Array叫familiesArray,使用<code>Stream.of(familiesArray).flatMap(family-&gt;family.getChildren_names)</code>返回的流的基本单位<strong>不是LinkedList,而是String(name)</strong>!,flatMap()将map到的children_names flat到 单个的name,于是结果返回的stream是包含所有家庭所有孩子姓名的流</string></li>
+</ol>
+<h3 id="常见的终止操作"><a href="#常见的终止操作" class="headerlink" title="常见的终止操作"></a>常见的终止操作</h3><p>我们操作流来实现函数式编程的最终目的就是将其转化为有用的数据结构，所以这就需要各种终止操作,常见的终止操作有以下几种</p>
+<ol>
+<li>forEach()</li>
+<li>reduce()，这是一个用于累计的方法</li>
+<li>collect,上面已经提到了，用于将流转化为各种数据结构</li>
+<li>max(),count()……类似的方法还有很多</li>
+</ol>
+<p>说了这么多的,labmda到底是什么，为什么使用-&gt;就可以实现函数式编程?</p>
+<p>其实归根结底，labmda表达式的出现就是为了解决java编程中参数为方法的情况,例如如果不使用lambda，我们要自定义排序，我们需要在.sort()方法中new actualSort(),lambda表达式就是一个匿名方法，提供参数，然后执行对于的操作.</p>
+<p>最后,我这里提到的只是java函数式编程的冰山一角，还有很多知识点未能提到，推荐一本书&lt;&lt;写给大忙人看的java se8&gt;&gt;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2019/12/28/java lambda函数式编程/" data-id="cjqs1ymqw00049gt5zynrvd8p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pwa介绍" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/11/pwa介绍/" class="article-date">
+  <time datetime="2019-01-11T12:42:35.000Z" itemprop="datePublished">2019-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/11/pwa介绍/">pwa介绍</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="作为一个前端开发者，我本身对Android和ios开发并不熟悉，这也就意味着，我没法做出广泛意义上的’app’-web-app的使用体验到如今9012年也没办法追上native-app-但，最近-一项新的技术-progressive-web-app-进入了我的世界，于是，作为一个前端开发者的我也可以开发出媲美原生app的产品了。"><a href="#作为一个前端开发者，我本身对Android和ios开发并不熟悉，这也就意味着，我没法做出广泛意义上的’app’-web-app的使用体验到如今9012年也没办法追上native-app-但，最近-一项新的技术-progressive-web-app-进入了我的世界，于是，作为一个前端开发者的我也可以开发出媲美原生app的产品了。" class="headerlink" title="作为一个前端开发者，我本身对Android和ios开发并不熟悉，这也就意味着，我没法做出广泛意义上的’app’, web app的使用体验到如今9012年也没办法追上native app.但，最近 一项新的技术 progressive web app 进入了我的世界，于是，作为一个前端开发者的我也可以开发出媲美原生app的产品了。"></a>作为一个前端开发者，我本身对Android和ios开发并不熟悉，这也就意味着，我没法做出广泛意义上的’app’, web app的使用体验到如今9012年也没办法追上native app.但，最近 一项新的技术 progressive web app 进入了我的世界，于是，作为一个前端开发者的我也可以开发出媲美原生app的产品了。</h3><p>渐进式网页应用(pwa)的核心为三项技术.1 manifest 2. service worker 3.消息推送</p>
+<p>网页应用和原生应用的一个很大的区别在于，手机端 web app的地址栏，导航栏导致在外观上和native app有很大差别，manifest实际上是一个json文件，里面包含这个app用于安装的各项信息，正是有了它的存在，我们的pwa可以安装在手机桌面，而且还有它相应的图标。</p>
+<p>网页应用和原生应用还有一个大的区别是，网页应用不能离线使用，在网络不好或者断网的情况下我们的应用就相当于摆设，而service worker这一缓存技术解决了这一难题，使用Cache用于缓存app需要的各项数据，且这些数据是什么，怎么用完全由开发者决定!</p>
+<p>最后一点，pwa还实现了消息推送功能，这也意味着 我们的app也能够提高用户粘性!</p>
+<p>我自己写了一个pwa demo <a href="https://github.com/dongdaxiaodong/pwa_todoLists" target="_blank" rel="noopener">项目地址</a> 可以作为参考，<a href="https://dongdaxiaodong.github.io/pwa_todoLists/" target="_blank" rel="noopener">应用地址</a>这是一个todo应用，用户的数据使用localstorage存储在本地，方便好用，记得添加到桌面哦</p>
+<p>作为一个开发者，其实微信小程序也为我们开发应用提供了一个渠道，但我并不为其所动。微信小程序始终是一个封闭的环境，web的本质是开发，共联的，所以 pwa才是未来!!!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2019/01/11/pwa介绍/" data-id="cjqs1ymqz00079gt5jplig2bj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwa/">pwa</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-java自定义排序" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/17/java自定义排序/" class="article-date">
@@ -97,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/17/java自定义排序/" data-id="cjpsitypu00041kt5xuvn4ll0" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/17/java自定义排序/" data-id="cjqs1ymr200099gt5m4i7zdf7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -155,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/10/blade应用部署之路/" data-id="cjpsityps00031kt5c3g8qb23" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/10/blade应用部署之路/" data-id="cjqs1ymps00009gt5p3fko88o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -228,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/04/马原机考满分程序/" data-id="cjpsityqd000k1kt5d0yto9iw" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/04/马原机考满分程序/" data-id="cjqs1ymrd000i9gt580ty1q94" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -280,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjpsitypz00081kt5n7iiakmb" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjqs1ymr6000c9gt5bc6gttgu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -327,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjpsityq6000d1kt5ibybwczi" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjqs1ymra000g9gt5onqbmdnu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
@@ -373,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjpsityq4000b1kt5e4c881zh" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjqs1ymr8000f9gt5eqyyb7ra" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -418,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjpsitypf00001kt51t351b48" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjqs1ymqx00059gt5rckpcwgi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -472,100 +578,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjpsityq9000f1kt5rqwlmhj2" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjqs1ymrl000o9gt5u4m0k0vs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-mooc满分互评脚本" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/17/mooc满分互评脚本/" class="article-date">
-  <time datetime="2018-11-17T06:52:03.000Z" itemprop="datePublished">2018-11-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/17/mooc满分互评脚本/">mooc满分互评脚本</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="中国大学mooc的满分自动互评脚本"><a href="#中国大学mooc的满分自动互评脚本" class="headerlink" title="中国大学mooc的满分自动互评脚本"></a>中国大学mooc的满分自动互评脚本</h2><p>学校的各门课程中，我们学生需要完成在线学习平台“中国大学mooc”上的作业，之后还需要互评。下面的js脚本可以极速完成互评，避免重复的点点点。</p>
-<p>话不多说，上代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">select_button=document.getElementsByClassName(&quot;j-select&quot;)</span><br><span class="line">for(let i=0;i&lt;select_button.length;i+=1)&#123;</span><br><span class="line">  select_button[i].click()</span><br><span class="line">&#125;</span><br><span class="line">select_textarea=document.getElementsByClassName(&quot;j-textarea&quot;)</span><br><span class="line">for(let i=0;i&lt;select_textarea.length;i+=1)&#123;</span><br><span class="line">  select_textarea[i].value=&quot;好&quot;</span><br><span class="line">&#125;</span><br><span class="line">all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;all_a.length;i+=1)&#123;</span><br><span class="line">  if(all_a[i].innerText==&quot;提交&quot;)&#123;</span><br><span class="line">    all_a[i].click()</span><br><span class="line">    break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">new_all_a=document.getElementsByTagName(&apos;a&apos;)</span><br><span class="line">for(let i=0;i&lt;new_all_a.length;i+=1)&#123;</span><br><span class="line">  if(new_all_a[i].innerText.indexOf(&quot;继续评估&quot;)&gt;=0)&#123;</span><br><span class="line">      new_all_a[i].click()</span><br><span class="line">      break</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure></p>
-<p>有了代码，接着，如何使用呢?</p>
-<ol>
-<li>首先我们需要登录自己的mooc账号，进入互评界面<img src="https://colinzhang.cn/pictures/mooc_huping_index.PNG" alt="互评按钮"></li>
-<li>点击前往互评，点击上方的开始互评</li>
-<li>接下来，我们就可以发挥代码的威力了，按下键盘的F12,这时会弹出开发者工具(如果没反应则自己上网查找你的浏览器的开发者工具在哪)，点击，控制台(console)，<img src="https://colinzhang.cn/pictures/mooc_console.PNG" alt="mooc_console">,我用的chrome.</li>
-<li>点击console板块下的输入框(要把代码复制到这里,在白色的方块里点一下就行了),之后把代码复制，粘贴进去。回车，搞定</li>
-<li>但这时仅仅互评了一次，我们需要互评多次，就需要再次Ctrl+V,回车，直到完成你需要互评的数量。大功告成,整个流程花费不到1分钟。</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjpsitypw00051kt5a4c6tz03" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用hexo的注意事项" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/15/使用hexo的注意事项/" class="article-date">
-  <time datetime="2018-11-15T07:15:22.000Z" itemprop="datePublished">2018-11-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/15/使用hexo的注意事项/">使用hexo的注意事项</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>hexo博客确实好用，使用github托管，免去了云主机的费用，同时操作起来也方便。但最近也出现了一些问题，在这里记录下来。</p>
-<h2 id="一-修改网站信息"><a href="#一-修改网站信息" class="headerlink" title="一:修改网站信息"></a>一:修改网站信息</h2><p>想要将博客网站中间的hexo四个大字换掉，就需要打开config.yml文件，修改前几行的信息就可以了</p>
-<h2 id="二-网站css和js加载不出来"><a href="#二-网站css和js加载不出来" class="headerlink" title="二:网站css和js加载不出来"></a>二:网站css和js加载不出来</h2><p>这个问题最近一直缠着我，我当前的解决方法是修改config_yml文件的url板块,css和js加载不出来的原因是src属性后面需要的链接地址和实际的不符，常见的错误就是多了“你的用户名/”所以，可以试试将config_yml文件的root:那一行只留下root: /</p>
-<h2 id="三-加载图片的问题"><a href="#三-加载图片的问题" class="headerlink" title="三:加载图片的问题"></a>三:加载图片的问题</h2><p>我们在markdown文件中使用了本地图片，要把它加载到博客中就需要自己把图片放到source文件夹中，我的做法是在source中新建一个pictures文件夹,把图片放进去。同时<strong>markdown中图片应该这样写(../pictures/pic_name.jpg)</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjpsityq100091kt5r8ore494" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
 
     </footer>
   </div>
@@ -592,7 +608,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwa/">pwa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
     </div>
   </div>
 
@@ -602,7 +618,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 20px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/web框架blade/" style="font-size: 20px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 15px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pwa/" style="font-size: 10px;">pwa</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/web框架blade/" style="font-size: 15px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
     </div>
   </div>
 
@@ -611,7 +627,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -624,6 +640,14 @@
       <ul>
         
           <li>
+            <a href="/2019/12/28/java lambda函数式编程/">java lambda函数式编程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/11/pwa介绍/">pwa介绍</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/17/java自定义排序/">java自定义排序</a>
           </li>
         
@@ -633,14 +657,6 @@
         
           <li>
             <a href="/2018/12/04/马原机考满分程序/">马原机考满分程序</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/28/使用git遇到的麻烦-一/">使用git遇到的麻烦1</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/27/微信小程序中的数据绑定/">微信小程序中的数据绑定</a>
           </li>
         
       </ul>
@@ -655,7 +671,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 colinZhang<br>
+      &copy; 2019 colinZhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
