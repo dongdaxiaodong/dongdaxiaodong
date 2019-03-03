@@ -66,6 +66,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-axios上传图片至sm-ms" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/03/axios上传图片至sm-ms/" class="article-date">
+  <time datetime="2019-03-03T14:52:57.000Z" itemprop="datePublished">2019-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/03/axios上传图片至sm-ms/">axios上传图片至sm.ms</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="最近的一个项目有这样一个需求”客户端接收用户上传的图片后，将图片放于图床-然后数据库存放图片的外链”。"><a href="#最近的一个项目有这样一个需求”客户端接收用户上传的图片后，将图片放于图床-然后数据库存放图片的外链”。" class="headerlink" title="最近的一个项目有这样一个需求”客户端接收用户上传的图片后，将图片放于图床,然后数据库存放图片的外链”。"></a>最近的一个项目有这样一个需求”客户端接收用户上传的图片后，将图片放于图床,然后数据库存放图片的外链”。</h3><p>图床选用的是sm.ms。这个网站免费提供图床服务，已经稳定运行好几年了。接着，前端选用axios发送请求，下面直接放代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;form enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    &lt;input name=&quot;file&quot; type=&quot;file&quot; id=&quot;file&quot; accept=&quot;image/*&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;button type=&quot;button&quot; onclick=&quot;uploadImage()&quot;&gt;upload&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=&quot;res&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function uploadImage() &#123;</span><br><span class="line">        let fd=new FormData()</span><br><span class="line">        let pic=document.getElementById(&quot;file&quot;).files[0]</span><br><span class="line">        fd.append(&quot;smfile&quot;,pic)</span><br><span class="line">        let config = &#123;headers: &#123;&apos;Content-Type&apos;: &apos;multipart/form-data&apos;&#125;&#125;</span><br><span class="line">        axios.post(&quot;https://sm.ms/api/upload&quot;,fd,config).then(function(res)&#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;).catch(res=&gt;&#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>过程中遇到了一个坑，之前使用了axios.js(完整版)而不是axios.min.js.导致出现’json parse错误的问题’,所以开发和生产都用min版本好一点</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2019/03/03/axios上传图片至sm-ms/" data-id="cjst1qe6d0000ust59muvl6fu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-pwa介绍" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/11/pwa介绍/" class="article-date">
@@ -98,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2019/01/11/pwa介绍/" data-id="cjqs37c3t00058kt5wvvymh0h" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2019/01/11/pwa介绍/" data-id="cjst1qea0000eust5knwmm8jj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwa/">pwa</a></li></ul>
@@ -160,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/28/java lambda函数式编程/" data-id="cjqs37c4p000z8kt5t1qla551" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/28/java lambda函数式编程/" data-id="cjst1qe9q0007ust5qt74rdjv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -203,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/17/java自定义排序/" data-id="cjqs37c3r00048kt51md4c6s8" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/17/java自定义排序/" data-id="cjst1qe9m0006ust5kudecioy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -261,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/10/blade应用部署之路/" data-id="cjqs37c3d00008kt5qsx5mcz1" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/10/blade应用部署之路/" data-id="cjst1qe9j0004ust5yg11ccf6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
@@ -334,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/12/04/马原机考满分程序/" data-id="cjqs37c4b000m8kt5fxqhhhkz" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/12/04/马原机考满分程序/" data-id="cjst1qeaf000must5c6ycvpwt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -386,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjqs37c3w00088kt57bcallue" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/28/使用git遇到的麻烦-一/" data-id="cjst1qe9s0008ust5hoaif03q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -433,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjqs37c45000g8kt5gyuv6qwe" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/27/微信小程序中的数据绑定/" data-id="cjst1qeac000kust5luoj30va" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
@@ -479,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjqs37c42000e8kt5qblhirre" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/24/使用python代码登录学校校园网/" data-id="cjst1qea5000gust5s16tnnkb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -524,61 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjqs37c3p00038kt5scmb9m3e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" class="article-date">
-  <time datetime="2018-11-19T02:22:47.000Z" itemprop="datePublished">2018-11-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/">记录一下使用&#39;blade&#39;以及其配套orm库&#39;anima&#39;连接数据库的踩坑之旅</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="blade是国产的开源java-web框架-github地址。"><a href="#blade是国产的开源java-web框架-github地址。" class="headerlink" title="blade是国产的开源java web框架,github地址。"></a>blade是国产的开源java web框架,<a href="https://github.com/lets-blade/blade" target="_blank" rel="noopener">github地址</a>。</h3><p>blade非常轻量,内置服务器，而且没有使用j2ee那一套,blade吸收了很多web框架的优点，开发速度非常快。blade的’hello world’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import com.blade.Blade;</span><br><span class="line">public class Application&#123;</span><br><span class="line">	public static void main()&#123;</span><br><span class="line">		Blade.me().get(&quot;/&quot;,(req,res))-&gt;res.text(&quot;hello world&quot;)</span><br><span class="line">					.start(Application.class,args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>好了，优点说了这么多，但实际用起来也经历了不少坑，在博客里记录一下把.</p>
-<h2 id="目标：搭建一个blade项目，并连接好mysql数据库"><a href="#目标：搭建一个blade项目，并连接好mysql数据库" class="headerlink" title="目标：搭建一个blade项目，并连接好mysql数据库"></a>目标：搭建一个blade项目，并连接好mysql数据库</h2><ol>
-<li>blade必须使用maven来创建项目,我用的idea，点击左上角File-&gt;new Project-&gt;选择maven-&gt;一直next就行了</li>
-<li>关于maven：maven就相当于是java的包管理器，类似于python的pip,nodejs的npm</li>
-<li>创建成功后，我们就可以导入项目所需的相关依赖了，核心的包括blade，mysql，anima等包,当时因为怕没有把全部依赖包导入进项目，我直接用了一个完整的blade项目的全部依赖,不怕多，就怕少。</li>
-<li>这里需要注意的是我们应该使用最新的blade版本，我目前使用的是<br><code>&lt;blade.version&gt;2.0.11.ALPHA&lt;/blade.version&gt;</code>这个版本,新版本启动项目用的是blade.of(),老版本用的是blade.me(),所以一定要用新版本</li>
-<li>项目创建成功后，我们就该创建完整的目录结构了。<img src="../pictures/blade_log.PNG" alt="我的目录结构">。</li>
-<li>目录结构分析一:com.bladejava是存放所有项目代码的包,在这个包下创建的Application.java文件就是启动文件。在com.bladejava下创建config,controller,model这几个包，config是用于配置的包，里面的Java文件用于项目配置(例如数据库的配置),我只有一个StartUpConfig.java是启动项目时需要运行的文件，通常还应该有处理异常的文件。controller存放路由文件,相当于flask中的蓝图。model存放模型。</li>
-<li>目录结构分析二:和java文件夹同级有个resource,里面是存放静态资源。同样的新建两个目录,static,templates。static放静态资源(js,css)，templates放html模板。</li>
-<li>目录结构分析三:resources下新建一个文件application.properties,这个就是配置文件了，里面存放各种配置信息，如mysql的配置，端口的配置等</li>
-</ol>
-<p>项目目录搭建完成后，我们可以试一试了，再controller中新建一个indexController.java <img src="../pictures/index_con.PNG" alt="indexController"> @Path是blade定义的一个注解，标明这是一个路由路径,@Path后面可以带参数。@GetRoute定义了一个路由。</p>
-<p>anima的使用,anima是blade作者开发的一个orm库，和blade搭配起来事半功倍.定义一个anima的model，非常简单，仅仅需要将类继承自Anima下的model类。同样的model类也可以有注解@Table(name=”数据库中表名”,pk=”主键名”),定义好类后，在路由函数中我们就可以任意使用了，更多amima信息见<a href="https://github.com/biezhi/anima/wiki/%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE" target="_blank" rel="noopener">anima_wiki</a></p>
-<p>接下来就可以连接数据库了<br>在StartUpConfig中写入以下代码<img src="../pictures/blade_mysql.PNG" alt="startupconfig"></p>
-<p>这样项目构建完成，并且数据库也连接成功了,<a href="https://github.com/dongdaxiaodong/blade_demo" target="_blank" rel="noopener">我的项目地址</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjqs37c47000i8kt5z9fnr2wf" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjst1qe9e0003ust5qr14ftz6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -618,7 +605,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 15px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/pwa/" style="font-size: 10px;">pwa</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/web框架blade/" style="font-size: 15px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 15px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/pwa/" style="font-size: 10px;">pwa</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/web框架blade/" style="font-size: 15px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
     </div>
   </div>
 
@@ -627,7 +614,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
     </div>
   </div>
 
@@ -638,6 +625,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/03/03/axios上传图片至sm-ms/">axios上传图片至sm.ms</a>
+          </li>
         
           <li>
             <a href="/2019/01/11/pwa介绍/">pwa介绍</a>
@@ -653,10 +644,6 @@
         
           <li>
             <a href="/2018/12/10/blade应用部署之路/">blade应用部署之路</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/04/马原机考满分程序/">马原机考满分程序</a>
           </li>
         
       </ul>
