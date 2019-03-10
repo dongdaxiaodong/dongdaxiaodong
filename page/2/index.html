@@ -66,6 +66,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-blade获取请求参数" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/21/blade获取请求参数/" class="article-date">
+  <time datetime="2018-11-21T14:24:04.000Z" itemprop="datePublished">2018-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/21/blade获取请求参数/">blade获取请求参数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java-model-然后进行接下俩的参数。"><a href="#blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java-model-然后进行接下俩的参数。" class="headerlink" title="blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java model,然后进行接下俩的参数。"></a>blade框架给予了很多的获取request请求参数的api。我们可以很轻松的获得form表单中的参数，并将其转换成java model,然后进行接下俩的参数。</h3><h3 id="但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息-而blade处理Json数据的api只有一个request-bodyToString-返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java-HashMap的接口，下面上代码"><a href="#但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息-而blade处理Json数据的api只有一个request-bodyToString-返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java-HashMap的接口，下面上代码" class="headerlink" title="但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息,而blade处理Json数据的api只有一个request.bodyToString(),返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java HashMap的接口，下面上代码"></a>但我们实际开发中，特别是单页面应用中，使用ajax获得请求参数显得更为普及，而ajax发送请求参数是通过json传递信息,而blade处理Json数据的api只有一个request.bodyToString(),返回一个字符串，显然这个字符串我们需要加工才能进一步操作。于是自己定义了个转换json为java HashMap的接口，下面上代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static HashMap&lt;String,String&gt; json_maps(String body_str)&#123;</span><br><span class="line">        HashMap&lt;String,String&gt; maps=new HashMap&lt;&gt;();</span><br><span class="line">        String[] body_strings=body_str.split(&quot;,&quot;);</span><br><span class="line">        String pattern=&quot;\&quot;(.+)\&quot;&quot;;</span><br><span class="line">        Pattern P=Pattern.compile(pattern);</span><br><span class="line">        for(int i=0;i&lt;body_strings.length;i+=1)&#123;</span><br><span class="line">            String[] in_str=body_strings[i].split(&quot;:&quot;);</span><br><span class="line">            Matcher matcher_key=P.matcher(in_str[0]);</span><br><span class="line">            String key=&quot;&quot;;</span><br><span class="line">            String value=&quot;&quot;;</span><br><span class="line">            while (matcher_key.find())&#123;</span><br><span class="line">                key=matcher_key.group(0).substring(1,matcher_key.group(0).length()-1);</span><br><span class="line">            &#125;</span><br><span class="line">            Matcher matcher_value=P.matcher(in_str[1]);</span><br><span class="line">            while (matcher_value.find())&#123;</span><br><span class="line">                value=matcher_value.group(0).substring(1,matcher_value.group(0).length()-1);</span><br><span class="line">            &#125;</span><br><span class="line">            maps.put(key,value);</span><br><span class="line">        &#125;</span><br><span class="line">    return maps;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>简单说明一下，</p>
+<p>传入的参数是字符串，传出的参数是hashMap&lt;String,String&gt;。<br>所以之后建模的时候需要适当的Interger.ParseInt()等操作<br>代码核心使用正则表达式</p>
+<p>正则表达式模式:”(.+)”<br>然后分开遍历key和value数组，之后，这里需要注意的是获取到的group(0)需要再substring(0,length-1),这样才获取得到value和key值</p>
+<p>输入:String body_str=”{“name”:”colin”,”age”:”33”}”<br>输出:HashMap&lt;String,String&gt;paramMap;</p>
+<p>paramMap.get(“name”)==&gt;”colin”<br>paramMap.get(“age”)==&gt;”33”</p>
+<p>blade对于个人开发者非常友好，大爱!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://colinzhang.cn/2018/11/21/blade获取请求参数/" data-id="cjt334q4k000190t5l0q3rhta" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" class="article-date">
@@ -108,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjst1qeah000oust5igxs4sho" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/19/记录一下使用-blade-以及其配套orm库-anima-连接数据库的踩坑之旅/" data-id="cjt334q5o000m90t5b4wa1j0x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web框架blade/">web框架blade</a></li></ul>
@@ -156,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjst1qeaj000qust5tstdspah" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/17/mooc满分互评脚本/" data-id="cjt334q53000990t5thcgoa1c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -198,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjst1qe9w000cust5czsrt46x" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/使用hexo的注意事项/" data-id="cjt334q5f000g90t5ryn1dgo9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -245,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjst1qeaa000iust5nlmkd6fv" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/15/记录搭建hexo博客的历程/" data-id="cjt334q5s000q90t5rnvzuozd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li></ul>
@@ -292,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjst1qe9u000bust5ie1da8jr" class="article-share-link">Share</a>
+      <a data-url="http://colinzhang.cn/2018/11/14/hello-world/" data-id="cjt334q4u000490t59un6zjww" class="article-share-link">Share</a>
       
       
     </footer>
@@ -320,7 +365,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwa/">pwa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo的一些需要注意的地方/">hexo的一些需要注意的地方</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/love/">love</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwa/">pwa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web框架blade/">web框架blade</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信小程序/">微信小程序</a></li></ul>
     </div>
   </div>
 
@@ -330,7 +375,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 15px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/pwa/" style="font-size: 10px;">pwa</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/web框架blade/" style="font-size: 15px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo的一些需要注意的地方/" style="font-size: 15px;">hexo的一些需要注意的地方</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/love/" style="font-size: 10px;">love</a> <a href="/tags/pwa/" style="font-size: 10px;">pwa</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/web框架blade/" style="font-size: 15px;">web框架blade</a> <a href="/tags/微信小程序/" style="font-size: 10px;">微信小程序</a>
     </div>
   </div>
 
@@ -352,6 +397,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/10/这段时光/">这段时光</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/03/axios上传图片至sm-ms/">axios上传图片至sm.ms</a>
           </li>
         
@@ -365,10 +414,6 @@
         
           <li>
             <a href="/2018/12/17/java自定义排序/">java自定义排序</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/10/blade应用部署之路/">blade应用部署之路</a>
           </li>
         
       </ul>
